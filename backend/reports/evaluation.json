@@ -1,0 +1,139 @@
+{
+  "evaluation_timestamp": "2026-10-10T19:16:36.771958",
+  "dataset_summary": "Lloyds UK Residential Housing Stock Dataset (5,000 Properties)",
+  "synthetic_disclosure": "All properties and transaction records were algorithmically synthesized with physical constraints and distributions calibrated to English Housing Survey, NEED, and Land Registry statistics.",
+  "split_counts": {
+    "train": 3509,
+    "validation": 753,
+    "test": 738
+  },
+  "targets": {
+    "electricity": {
+      "selected_algorithm": "HistGradientBoosting",
+      "candidates_validation": {
+        "Dummy (Median)": {
+          "MAE": 2451.41,
+          "RMSE": 5262.82,
+          "R2": -0.0869,
+          "WAPE_pct": 45.53
+        },
+        "Ridge Regression": {
+          "MAE": 899.17,
+          "RMSE": 1832.24,
+          "R2": 0.8683,
+          "WAPE_pct": 16.7
+        },
+        "Random Forest": {
+          "MAE": 344.0,
+          "RMSE": 717.94,
+          "R2": 0.9798,
+          "WAPE_pct": 6.39
+        },
+        "HistGradientBoosting": {
+          "MAE": 333.49,
+          "RMSE": 685.27,
+          "R2": 0.9816,
+          "WAPE_pct": 6.19
+        }
+      },
+      "test_metrics": {
+        "MAE": 323.47,
+        "RMSE": 596.91,
+        "R2": 0.9825,
+        "WAPE_pct": 6.21
+      },
+      "baseline_test_metrics": {
+        "MAE": 2261.06,
+        "RMSE": 4700.97,
+        "R2": -0.0851,
+        "WAPE_pct": 43.38
+      }
+    },
+    "gas": {
+      "selected_algorithm": "HistGradientBoosting",
+      "candidates_validation": {
+        "Dummy (Median)": {
+          "MAE": 7374.21,
+          "RMSE": 9738.07,
+          "R2": -0.0,
+          "WAPE_pct": 52.45
+        },
+        "Ridge Regression": {
+          "MAE": 2300.56,
+          "RMSE": 3424.77,
+          "R2": 0.8763,
+          "WAPE_pct": 16.36
+        },
+        "Random Forest": {
+          "MAE": 984.47,
+          "RMSE": 1553.98,
+          "R2": 0.9745,
+          "WAPE_pct": 7.0
+        },
+        "HistGradientBoosting": {
+          "MAE": 987.54,
+          "RMSE": 1484.16,
+          "R2": 0.9768,
+          "WAPE_pct": 7.02
+        }
+      },
+      "test_metrics": {
+        "MAE": 893.69,
+        "RMSE": 1377.22,
+        "R2": 0.9792,
+        "WAPE_pct": 6.43
+      },
+      "baseline_test_metrics": {
+        "MAE": 7357.27,
+        "RMSE": 9549.58,
+        "R2": -0.0002,
+        "WAPE_pct": 52.92
+      }
+    },
+    "property_valuation": {
+      "selected_algorithm": "HistGradientBoosting",
+      "candidates_validation": {
+        "Dummy (Median)": {
+          "MAE": 126550.2,
+          "RMSE": 188154.3,
+          "R2": -0.072,
+          "WAPE_pct": 41.13
+        },
+        "Ridge Regression": {
+          "MAE": 35832.99,
+          "RMSE": 55187.24,
+          "R2": 0.9078,
+          "WAPE_pct": 11.65
+        },
+        "Random Forest": {
+          "MAE": 17892.43,
+          "RMSE": 25515.62,
+          "R2": 0.9803,
+          "WAPE_pct": 5.82
+        },
+        "HistGradientBoosting": {
+          "MAE": 16997.35,
+          "RMSE": 24248.02,
+          "R2": 0.9822,
+          "WAPE_pct": 5.52
+        }
+      },
+      "test_metrics": {
+        "MAE": 17130.99,
+        "RMSE": 25266.31,
+        "R2": 0.9779,
+        "WAPE_pct": 5.58
+      },
+      "baseline_test_metrics": {
+        "MAE": 123789.57,
+        "RMSE": 176527.29,
+        "R2": -0.08,
+        "WAPE_pct": 40.33
+      },
+      "residual_uncertainty_quantiles": {
+        "p10": -29222.71,
+        "p90": 23862.88
+      }
+    }
+  }
+}

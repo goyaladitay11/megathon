@@ -1,0 +1,3 @@
+fuel,kg_co2e_per_kwh,scope,source_year,geographic_applicability,source_url,methodology
+Electricity (Grid),0.20707,Scope 2,2024,United Kingdom,https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024,UK Government GHG Conversion Factors for Company Reporting 2024 (Grid Rolling Average)
+Natural Gas (Mains),0.18254,Scope 1,2024,United Kingdom,https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2024,UK Government GHG Conversion Factors for Company Reporting 2024 (Gross Calorific Value)

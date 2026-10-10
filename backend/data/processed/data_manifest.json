@@ -1,0 +1,50 @@
+{
+  "dataset_name": "Lloyds UK Residential Housing Stock Dataset (5,000 Properties)",
+  "num_properties": 5000,
+  "num_customers": 2888,
+  "splits": {
+    "train": {
+      "count": 3509,
+      "customers": 2022,
+      "pct": 70.2
+    },
+    "validation": {
+      "count": 753,
+      "customers": 433,
+      "pct": 15.1
+    },
+    "test": {
+      "count": 738,
+      "customers": 433,
+      "pct": 14.8
+    }
+  },
+  "leakage_verification": "Passed: Zero customer_id or property_id overlap across train, val, and test splits.",
+  "distributions": {
+    "epc_ratings": {
+      "D": 1804,
+      "C": 1485,
+      "E": 1010,
+      "B": 455,
+      "F": 176,
+      "A": 56,
+      "G": 14
+    },
+    "property_types": {
+      "semi_detached": 1643,
+      "terraced": 1364,
+      "detached": 1172,
+      "flat": 821
+    },
+    "heating_systems": {
+      "gas_boiler": 3808,
+      "heat_pump": 502,
+      "electric_resistive": 382,
+      "oil_boiler": 308
+    },
+    "mean_floor_area_m2": 96.9,
+    "mean_baseline_electricity_kwh": 5153.0,
+    "mean_baseline_gas_kwh": 14150.4,
+    "poor_performing_pct": 49.9
+  }
+}

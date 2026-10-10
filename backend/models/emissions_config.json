@@ -1,0 +1,6 @@
+{
+  "electricity_kg_co2e_per_kwh": 0.20707,
+  "gas_kg_co2e_per_kwh": 0.18254,
+  "source": "UK Government GHG Conversion Factors for Company Reporting 2024 (DESNZ / DEFRA)",
+  "year": 2024
+}

@@ -1,0 +1,35 @@
+{
+  "energy_model": {
+    "numeric_features": [
+      "property_age",
+      "floor_area_m2",
+      "bedrooms",
+      "smart_controls"
+    ],
+    "categorical_features": [
+      "property_type",
+      "energy_rating",
+      "heating_system",
+      "insulation_type",
+      "glazing_type",
+      "solar_installed",
+      "region"
+    ],
+    "target_electricity": "annual_electricity_kwh",
+    "target_gas": "annual_gas_kwh"
+  },
+  "valuation_model": {
+    "numeric_features": [
+      "property_age",
+      "floor_area_m2",
+      "bedrooms",
+      "sale_year"
+    ],
+    "categorical_features": [
+      "property_type",
+      "energy_rating_at_sale",
+      "region"
+    ],
+    "target_valuation": "historical_sale_price_gbp"
+  }
+}
