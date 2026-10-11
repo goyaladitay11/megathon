@@ -60,7 +60,7 @@ export default function GreenHome({ view }: { view: View }) {
   const [aiAnswer,setAiAnswer] = useState("");
   const [scenarioQuestion,setScenarioQuestion] = useState("");
   const reduced = useReducedMotion();
-  const useSample = false;
+  const useSample = true;
   const reportProperty = property;
   const selectedKey = selectionKey(selected);
   const scenarioCurrent = Boolean(
@@ -121,10 +121,15 @@ export default function GreenHome({ view }: { view: View }) {
     setSelected(ids);
   }
 
-  function loadSample(result: Scenario) {
-    setScenario(result);
-    setSelected(result.selectedRetrofits);
+  async function loadSample(result: Scenario) {
+    if (!comparisonBase || busy) return;
+    const ids = result.selectedRetrofits;
+    setSelected(ids);
+    setBusy(true);
     setError("");
+    try { setScenario(await runScenario(property, ids, comparisonBase)); }
+    catch (e) { setError(String(e)); }
+    finally { setBusy(false); }
   }
 
   async function applyScenario() {
@@ -811,7 +816,7 @@ export default function GreenHome({ view }: { view: View }) {
                     aria-label="Sample report subject"
                   >
                     <span className="eyebrow">
-                      SAMPLE REPORT · YOUR DETAILS HAVE NOT BEEN CALCULATED
+                      LIVE PROPERTY REPORT · CALCULATED USING FASTAPI
                     </span>
                     <p>
                       The report below belongs to{" "}
@@ -854,7 +859,7 @@ export default function GreenHome({ view }: { view: View }) {
                         </div>
                         {useSample && (
                           <div className="gh-sample-presets">
-                            <span>LOAD A SAMPLE PLAN</span>
+                            <span>QUICK PLAN OPTIONS</span>
                             <button onClick={() => loadSample(sampleBaseline)}>
                               Starting home
                             </button>
@@ -944,7 +949,7 @@ export default function GreenHome({ view }: { view: View }) {
                     )}
                     <p className="gh-confirmed-note" role="status">
                       {!scenarioCurrent
-                        ? "Your selection is a draft. Load a matching sample plan to change the preview."
+                        ? "Your selection is a draft. Calculate it to see live results."
                         : `${scenario.selectedRetrofits.length} improvements in this fixed sample package. The score describes the sample home’s current condition.`}
                     </p>
                     <AssessmentReport
