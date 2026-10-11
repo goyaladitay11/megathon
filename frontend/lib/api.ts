@@ -1,6 +1,6 @@
 import type { Property, Scenario, Upgrade, StructuredDraft } from "./model";
 export const live = true;
-const BASE = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8765").replace(/\/$/, "");
+const BASE = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8766").replace(/\/$/, "");
 const ids: Record<Upgrade,string> = {insulation:"roof_insulation",glazing:"double_glazing",heat_pump:"heat_pump",solar:"solar_pv",thermostat:"smart_thermostat"};
 const rev = Object.fromEntries(Object.entries(ids).map(([a,b])=>[b,a])) as Record<string,Upgrade>;
 export type PortfolioRow = {property:Property;baseline:Scenario;package:Scenario;selected:Upgrade[]};
@@ -8,7 +8,7 @@ async function call<T>(route:string,payload?:unknown,signal?:AbortSignal):Promis
   let r:Response;
   try {
     r=await fetch(BASE+route,{method:payload===undefined?"GET":"POST",headers:payload===undefined?undefined:{"Content-Type":"application/json"},body:payload===undefined?undefined:JSON.stringify(payload),signal});
-  } catch(e) {if(signal?.aborted) throw e; throw Error("Cannot connect to FastAPI at "+BASE+". Check the running backend and CORS settings.");}
+  } catch(e) {if(signal?.aborted) throw e; throw Error("Cannot reach FastAPI at "+BASE+". Start the app with python3 scripts/dev.py from the repository root, and open the URL it prints.");}
   if(!r.ok)throw Error("FastAPI "+r.status+" "+(await r.text()).slice(0,500));
   return r.json() as Promise<T>;
 }
