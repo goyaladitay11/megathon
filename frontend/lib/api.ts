@@ -66,8 +66,7 @@ export async function runScenario(p:Property,selected:Upgrade[],_assessment:Scen
     tradeoffs:[],limitations:[s.energy.disclaimer,s.valuation.caveat]});
 }
 export async function explainScenario(p:Property,_scenario:Scenario,query:string,signal?:AbortSignal):Promise<{message:string;scenario?:Scenario}>{
-  if(!/^P1000[1-7]$/.test(p.id))return {message:"The current backend chat API uses preloaded demo properties and cannot ground answers in your custom property. Add property_input to /api/v1/chat before enabling personalized AI answers."};
-  const r=await call<any>("/api/v1/chat",{property_id:p.id,query},signal);
+  const r=await call<any>("/api/v1/chat",{property_input:toBackend(p),query},signal);
   return {message:prose(r.explanation)};
 }
 export async function loadPortfolio(signal?:AbortSignal):Promise<{rows:PortfolioRow[];warnings:string[]}>{
