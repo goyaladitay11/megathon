@@ -1,0 +1,3222 @@
+{
+  "source": {
+    "description": "Fixed illustrative data for the standalone frontend preview. No property prediction, backend request or live LLM inference occurs."
+  },
+  "property": {
+    "id": "P10001",
+    "name": "Cedar terrace · sample",
+    "customerId": "C1001",
+    "type": "terraced",
+    "yearBuilt": 1910,
+    "region": "North West",
+    "floorArea": 92,
+    "bedrooms": 3,
+    "epcRating": "E",
+    "electricityKwh": 3800,
+    "gasKwh": 16500,
+    "currentValue": 210000,
+    "budget": 25000,
+    "roofAccess": true,
+    "insulation": "poor",
+    "heating": "gas_boiler",
+    "glazing": "single",
+    "solar": "none",
+    "smartControls": false
+  },
+  "baseline": {
+    "id": "P10001:scenario:baseline",
+    "propertyId": "P10001",
+    "mode": "demo",
+    "selectedRetrofits": [],
+    "score": 29,
+    "classification": "Very poor",
+    "components": [
+      {
+        "id": "efficiency",
+        "label": "Energy efficiency (EPC)",
+        "weight": 0.25,
+        "score": 35,
+        "contribution": 8.75,
+        "reason": "EPC Band E: Sub-standard thermal efficiency; high vulnerability to fuel poverty"
+      },
+      {
+        "id": "intensity",
+        "label": "Metered energy consumption intensity",
+        "weight": 0.2,
+        "score": 44.8,
+        "contribution": 8.96,
+        "reason": "Elevated consumption intensity (220.7 kWh/m²): above typical domestic range"
+      },
+      {
+        "id": "insulation",
+        "label": "Insulation",
+        "weight": 0.15,
+        "score": 15,
+        "contribution": 2.25,
+        "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+      },
+      {
+        "id": "heating",
+        "label": "Heating system",
+        "weight": 0.15,
+        "score": 40,
+        "contribution": 6,
+        "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+      },
+      {
+        "id": "glazing",
+        "label": "Windows and glazing",
+        "weight": 0.1,
+        "score": 20,
+        "contribution": 2,
+        "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+      },
+      {
+        "id": "renewables",
+        "label": "Renewable energy",
+        "weight": 0.1,
+        "score": 5,
+        "contribution": 0.5,
+        "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+      },
+      {
+        "id": "controls",
+        "label": "Smart energy management",
+        "weight": 0.05,
+        "score": 20,
+        "contribution": 1,
+        "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+      }
+    ],
+    "baselineElectricityKwh": 3800,
+    "baselineGasKwh": 16500,
+    "baselinePurchasedEnergyKwh": 20300,
+    "electricityKwh": 3800,
+    "gasKwh": 16500,
+    "purchasedEnergyKwh": 20300,
+    "electricitySavingKwh": 0,
+    "gasSavingKwh": 0,
+    "energySavingKwh": 0,
+    "improvementPotentialPct": 0,
+    "annualEmissionsKg": null,
+    "carbonReductionKg": 0,
+    "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+    "baselineValue": 210000,
+    "valueLow": 210000,
+    "valueHigh": 210000,
+    "valueUpliftLowPct": 0,
+    "valueUpliftHighPct": 0,
+    "projectedEpcRating": null,
+    "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+    "energyIntensityKwhM2": 220.7,
+    "cost": null,
+    "recommendations": [
+      {
+        "id": "insulation",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+        "priority": 1,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 2029.5,
+        "cost": 900,
+        "costLow": 600,
+        "costHigh": 1200,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "glazing",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+        "priority": 2,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 1353,
+        "cost": 5500,
+        "costLow": 3500,
+        "costHigh": 7500,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "thermostat",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+        "priority": 3,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 1014.8,
+        "cost": 250,
+        "costLow": 200,
+        "costHigh": 350,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "heat_pump",
+        "feasible": true,
+        "suitability": "Medium",
+        "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+        "priority": 4,
+        "electricitySavingKwh": -4675,
+        "gasSavingKwh": 16500,
+        "cost": 10500,
+        "costLow": 8000,
+        "costHigh": 14000,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "solar",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+        "priority": 5,
+        "electricitySavingKwh": 1064,
+        "gasSavingKwh": 0,
+        "cost": 6500,
+        "costLow": 5000,
+        "costHigh": 8500,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      }
+    ],
+    "explanation": "",
+    "assumptions": [
+      "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+      "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+      "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+    ],
+    "draftSource": "sample",
+    "keyIssues": [
+      "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+      "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+      "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+      "Excessive consumption intensity (220.7 kWh/m² vs UK benchmark ~150 kWh/m²).",
+      "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+      "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+      "Statutory EPC Band E falls below the UK 2035 Clean Growth target (Band C)."
+    ],
+    "warnings": [],
+    "currentScoreOnly": true,
+    "narrativeUnavailableReason": "This fixed starting-home example contains score-component reasons. Connect a backend to generate a new structured explanation."
+  },
+  "package": {
+    "id": "P10001:scenario:insulation-solar",
+    "propertyId": "P10001",
+    "mode": "demo",
+    "selectedRetrofits": ["insulation", "solar"],
+    "score": 29,
+    "classification": "Very poor",
+    "components": [
+      {
+        "id": "efficiency",
+        "label": "Energy efficiency (EPC)",
+        "weight": 0.25,
+        "score": 35,
+        "contribution": 8.75,
+        "reason": "EPC Band E: Sub-standard thermal efficiency; high vulnerability to fuel poverty"
+      },
+      {
+        "id": "intensity",
+        "label": "Metered energy consumption intensity",
+        "weight": 0.2,
+        "score": 44.8,
+        "contribution": 8.96,
+        "reason": "Elevated consumption intensity (220.7 kWh/m²): above typical domestic range"
+      },
+      {
+        "id": "insulation",
+        "label": "Insulation",
+        "weight": 0.15,
+        "score": 15,
+        "contribution": 2.25,
+        "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+      },
+      {
+        "id": "heating",
+        "label": "Heating system",
+        "weight": 0.15,
+        "score": 40,
+        "contribution": 6,
+        "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+      },
+      {
+        "id": "glazing",
+        "label": "Windows and glazing",
+        "weight": 0.1,
+        "score": 20,
+        "contribution": 2,
+        "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+      },
+      {
+        "id": "renewables",
+        "label": "Renewable energy",
+        "weight": 0.1,
+        "score": 5,
+        "contribution": 0.5,
+        "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+      },
+      {
+        "id": "controls",
+        "label": "Smart energy management",
+        "weight": 0.05,
+        "score": 20,
+        "contribution": 1,
+        "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+      }
+    ],
+    "baselineElectricityKwh": 3800,
+    "baselineGasKwh": 16500,
+    "baselinePurchasedEnergyKwh": 20300,
+    "electricityKwh": 2736,
+    "gasKwh": 14470.5,
+    "purchasedEnergyKwh": 17206.5,
+    "electricitySavingKwh": 1064,
+    "gasSavingKwh": 2029.5,
+    "energySavingKwh": 3093.5,
+    "improvementPotentialPct": 15.24,
+    "annualEmissionsKg": null,
+    "carbonReductionKg": 590.8,
+    "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+    "baselineValue": 210000,
+    "valueLow": 218000,
+    "valueHigh": 224900,
+    "valueUpliftLowPct": 3.8,
+    "valueUpliftHighPct": 7.1,
+    "projectedEpcRating": null,
+    "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+    "energyIntensityKwhM2": 220.7,
+    "cost": null,
+    "recommendations": [
+      {
+        "id": "insulation",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+        "priority": 1,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 2029.5,
+        "cost": 900,
+        "costLow": 600,
+        "costHigh": 1200,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "glazing",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+        "priority": 2,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 1353,
+        "cost": 5500,
+        "costLow": 3500,
+        "costHigh": 7500,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "thermostat",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+        "priority": 3,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 1014.8,
+        "cost": 250,
+        "costLow": 200,
+        "costHigh": 350,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "heat_pump",
+        "feasible": true,
+        "suitability": "Medium",
+        "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+        "priority": 4,
+        "electricitySavingKwh": -4675,
+        "gasSavingKwh": 16500,
+        "cost": 10500,
+        "costLow": 8000,
+        "costHigh": 14000,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "solar",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+        "priority": 5,
+        "electricitySavingKwh": 1064,
+        "gasSavingKwh": 0,
+        "cost": 6500,
+        "costLow": 5000,
+        "costHigh": 8500,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      }
+    ],
+    "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+    "assumptions": [
+      "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+      "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+      "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+    ],
+    "draft": {
+      "scenarioId": "P10001:scenario:insulation-solar",
+      "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+      "sections": [
+        {
+          "id": "recommendations",
+          "title": "Why these example improvements",
+          "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+        },
+        {
+          "id": "tradeoffs",
+          "title": "Trade-offs to consider",
+          "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+        },
+        {
+          "id": "limitations",
+          "title": "What this example cannot promise",
+          "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+        }
+      ],
+      "why": [
+        {
+          "title": "Loft insulation",
+          "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+        },
+        {
+          "title": "Solar panels",
+          "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+        }
+      ],
+      "limitations": [
+        "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+        "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+      ]
+    },
+    "draftSource": "sample",
+    "keyIssues": [
+      "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+      "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+      "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+      "Excessive consumption intensity (220.7 kWh/m² vs UK benchmark ~150 kWh/m²).",
+      "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+      "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+      "Statutory EPC Band E falls below the UK 2035 Clean Growth target (Band C)."
+    ],
+    "warnings": [],
+    "currentScoreOnly": true
+  },
+  "complete": {
+    "id": "P10001:recommended:insulation-glazing-thermostat-heat_pump-solar",
+    "propertyId": "P10001",
+    "mode": "demo",
+    "selectedRetrofits": [
+      "insulation",
+      "glazing",
+      "thermostat",
+      "heat_pump",
+      "solar"
+    ],
+    "score": 29,
+    "classification": "Very poor",
+    "components": [
+      {
+        "id": "efficiency",
+        "label": "Energy efficiency (EPC)",
+        "weight": 0.25,
+        "score": 35,
+        "contribution": 8.75,
+        "reason": "EPC Band E: Sub-standard thermal efficiency; high vulnerability to fuel poverty"
+      },
+      {
+        "id": "intensity",
+        "label": "Metered energy consumption intensity",
+        "weight": 0.2,
+        "score": 44.8,
+        "contribution": 8.96,
+        "reason": "Elevated consumption intensity (220.7 kWh/m²): above typical domestic range"
+      },
+      {
+        "id": "insulation",
+        "label": "Insulation",
+        "weight": 0.15,
+        "score": 15,
+        "contribution": 2.25,
+        "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+      },
+      {
+        "id": "heating",
+        "label": "Heating system",
+        "weight": 0.15,
+        "score": 40,
+        "contribution": 6,
+        "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+      },
+      {
+        "id": "glazing",
+        "label": "Windows and glazing",
+        "weight": 0.1,
+        "score": 20,
+        "contribution": 2,
+        "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+      },
+      {
+        "id": "renewables",
+        "label": "Renewable energy",
+        "weight": 0.1,
+        "score": 5,
+        "contribution": 0.5,
+        "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+      },
+      {
+        "id": "controls",
+        "label": "Smart energy management",
+        "weight": 0.05,
+        "score": 20,
+        "contribution": 1,
+        "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+      }
+    ],
+    "baselineElectricityKwh": 3800,
+    "baselineGasKwh": 16500,
+    "baselinePurchasedEnergyKwh": 20300,
+    "electricityKwh": 5295,
+    "gasKwh": 0,
+    "purchasedEnergyKwh": 5295,
+    "electricitySavingKwh": -1495,
+    "gasSavingKwh": 16500,
+    "energySavingKwh": 15005,
+    "improvementPotentialPct": 73.92,
+    "annualEmissionsKg": null,
+    "carbonReductionKg": 2702.3,
+    "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+    "baselineValue": 210000,
+    "valueLow": 225800,
+    "valueHigh": 240400,
+    "valueUpliftLowPct": 7.5,
+    "valueUpliftHighPct": 14.5,
+    "projectedEpcRating": null,
+    "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+    "energyIntensityKwhM2": 220.7,
+    "cost": 23650,
+    "recommendations": [
+      {
+        "id": "insulation",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+        "priority": 1,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 2029.5,
+        "cost": 900,
+        "costLow": 600,
+        "costHigh": 1200,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "glazing",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+        "priority": 2,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 1353,
+        "cost": 5500,
+        "costLow": 3500,
+        "costHigh": 7500,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "thermostat",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+        "priority": 3,
+        "electricitySavingKwh": 0,
+        "gasSavingKwh": 1014.8,
+        "cost": 250,
+        "costLow": 200,
+        "costHigh": 350,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "heat_pump",
+        "feasible": true,
+        "suitability": "Medium",
+        "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+        "priority": 4,
+        "electricitySavingKwh": -4675,
+        "gasSavingKwh": 16500,
+        "cost": 10500,
+        "costLow": 8000,
+        "costHigh": 14000,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      },
+      {
+        "id": "solar",
+        "feasible": true,
+        "suitability": "High",
+        "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+        "priority": 5,
+        "electricitySavingKwh": 1064,
+        "gasSavingKwh": 0,
+        "cost": 6500,
+        "costLow": 5000,
+        "costHigh": 8500,
+        "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+      }
+    ],
+    "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+    "assumptions": [
+      "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+      "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+      "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+    ],
+    "draft": {
+      "scenarioId": "P10001:recommended:insulation-glazing-thermostat-heat_pump-solar",
+      "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+      "sections": [
+        {
+          "id": "recommendations",
+          "title": "Why these example improvements",
+          "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes glazing to show how reducing heat loss can be explained alongside estimated savings.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+        },
+        {
+          "id": "tradeoffs",
+          "title": "Trade-offs to consider",
+          "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+        },
+        {
+          "id": "limitations",
+          "title": "What this example cannot promise",
+          "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+        }
+      ],
+      "why": [
+        {
+          "title": "Loft insulation",
+          "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+        },
+        {
+          "title": "Double glazing",
+          "body": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings."
+        },
+        {
+          "title": "Smart thermostat",
+          "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+        },
+        {
+          "title": "Air-source heat pump",
+          "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+        },
+        {
+          "title": "Solar panels",
+          "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+        }
+      ],
+      "limitations": [
+        "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+        "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+      ]
+    },
+    "draftSource": "sample",
+    "keyIssues": [
+      "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+      "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+      "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+      "Excessive consumption intensity (220.7 kWh/m² vs UK benchmark ~150 kWh/m²).",
+      "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+      "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+      "Statutory EPC Band E falls below the UK 2035 Clean Growth target (Band C)."
+    ],
+    "warnings": [],
+    "currentScoreOnly": true
+  },
+  "portfolio": [
+    {
+      "property": {
+        "id": "P10001",
+        "name": "Property P10001",
+        "customerId": "C1001",
+        "type": "terraced",
+        "yearBuilt": 1910,
+        "region": "North West",
+        "floorArea": 92,
+        "bedrooms": 3,
+        "epcRating": "E",
+        "electricityKwh": 3800,
+        "gasKwh": 16500,
+        "currentValue": 210000,
+        "budget": 0,
+        "roofAccess": true,
+        "insulation": "poor",
+        "heating": "gas_boiler",
+        "glazing": "single",
+        "solar": "none",
+        "smartControls": false
+      },
+      "baseline": {
+        "id": "P10001:recommended:insulation-glazing-thermostat-heat_pump-solar",
+        "propertyId": "P10001",
+        "mode": "demo",
+        "selectedRetrofits": [
+          "insulation",
+          "glazing",
+          "thermostat",
+          "heat_pump",
+          "solar"
+        ],
+        "score": 29,
+        "classification": "Very poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 35,
+            "contribution": 8.75,
+            "reason": "EPC Band E: Sub-standard thermal efficiency; high vulnerability to fuel poverty"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 44.8,
+            "contribution": 8.96,
+            "reason": "Elevated consumption intensity (220.7 kWh/m²): above typical domestic range"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 40,
+            "contribution": 6,
+            "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 20,
+            "contribution": 2,
+            "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 3800,
+        "baselineGasKwh": 16500,
+        "baselinePurchasedEnergyKwh": 20300,
+        "electricityKwh": 5295,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 5295,
+        "electricitySavingKwh": -1495,
+        "gasSavingKwh": 16500,
+        "energySavingKwh": 15005,
+        "improvementPotentialPct": 73.92,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 2702.3,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 210000,
+        "valueLow": 225800,
+        "valueHigh": 240400,
+        "valueUpliftLowPct": 7.5,
+        "valueUpliftHighPct": 14.5,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 220.7,
+        "cost": 23650,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 2029.5,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "glazing",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+            "priority": 2,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1353,
+            "cost": 5500,
+            "costLow": 3500,
+            "costHigh": 7500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1014.8,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -4675,
+            "gasSavingKwh": 16500,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1064,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10001:recommended:insulation-glazing-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes glazing to show how reducing heat loss can be explained alongside estimated savings.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Double glazing",
+              "body": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+          "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+          "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+          "Excessive consumption intensity (220.7 kWh/m² vs UK benchmark ~150 kWh/m²).",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+          "Statutory EPC Band E falls below the UK 2035 Clean Growth target (Band C)."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "package": {
+        "id": "P10001:recommended:insulation-glazing-thermostat-heat_pump-solar",
+        "propertyId": "P10001",
+        "mode": "demo",
+        "selectedRetrofits": [
+          "insulation",
+          "glazing",
+          "thermostat",
+          "heat_pump",
+          "solar"
+        ],
+        "score": 29,
+        "classification": "Very poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 35,
+            "contribution": 8.75,
+            "reason": "EPC Band E: Sub-standard thermal efficiency; high vulnerability to fuel poverty"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 44.8,
+            "contribution": 8.96,
+            "reason": "Elevated consumption intensity (220.7 kWh/m²): above typical domestic range"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 40,
+            "contribution": 6,
+            "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 20,
+            "contribution": 2,
+            "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 3800,
+        "baselineGasKwh": 16500,
+        "baselinePurchasedEnergyKwh": 20300,
+        "electricityKwh": 5295,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 5295,
+        "electricitySavingKwh": -1495,
+        "gasSavingKwh": 16500,
+        "energySavingKwh": 15005,
+        "improvementPotentialPct": 73.92,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 2702.3,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 210000,
+        "valueLow": 225800,
+        "valueHigh": 240400,
+        "valueUpliftLowPct": 7.5,
+        "valueUpliftHighPct": 14.5,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 220.7,
+        "cost": 23650,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 2029.5,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "glazing",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+            "priority": 2,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1353,
+            "cost": 5500,
+            "costLow": 3500,
+            "costHigh": 7500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1014.8,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -4675,
+            "gasSavingKwh": 16500,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1064,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10001:recommended:insulation-glazing-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes glazing to show how reducing heat loss can be explained alongside estimated savings.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Double glazing",
+              "body": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+          "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+          "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+          "Excessive consumption intensity (220.7 kWh/m² vs UK benchmark ~150 kWh/m²).",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+          "Statutory EPC Band E falls below the UK 2035 Clean Growth target (Band C)."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "selected": ["insulation", "glazing", "thermostat", "heat_pump", "solar"]
+    },
+    {
+      "property": {
+        "id": "P10002",
+        "name": "Property P10002",
+        "customerId": "C1002",
+        "type": "semi-detached",
+        "yearBuilt": 1974,
+        "region": "West Midlands",
+        "floorArea": 110,
+        "bedrooms": 3,
+        "epcRating": "D",
+        "electricityKwh": 3400,
+        "gasKwh": 12800,
+        "currentValue": 285000,
+        "budget": 0,
+        "roofAccess": true,
+        "insulation": "average",
+        "heating": "gas_boiler",
+        "glazing": "double",
+        "solar": "none",
+        "smartControls": false
+      },
+      "baseline": {
+        "id": "P10002:recommended:insulation-thermostat-heat_pump-solar",
+        "propertyId": "P10002",
+        "mode": "demo",
+        "selectedRetrofits": ["insulation", "thermostat", "heat_pump", "solar"],
+        "score": 48,
+        "classification": "Poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 50,
+            "contribution": 12.5,
+            "reason": "EPC Band D: Median UK domestic average; significant retrofit potential"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 65.9,
+            "contribution": 13.18,
+            "reason": "Moderate consumption intensity (147.3 kWh/m²): near typical UK dual-fuel consumption"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 50,
+            "contribution": 7.5,
+            "reason": "Average insulation: Partial loft or standard unfilled cavity; room for fabric upgrades"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 40,
+            "contribution": 6,
+            "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 75,
+            "contribution": 7.5,
+            "reason": "Double glazing: Standard UK multi-chamber thermal insulation barrier"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 3400,
+        "baselineGasKwh": 12800,
+        "baselinePurchasedEnergyKwh": 16200,
+        "electricityKwh": 4601.5,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 4601.5,
+        "electricitySavingKwh": -1201.5,
+        "gasSavingKwh": 12800,
+        "energySavingKwh": 11598.5,
+        "improvementPotentialPct": 71.6,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 2087.7,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 285000,
+        "valueLow": 302100,
+        "valueHigh": 318300,
+        "valueUpliftLowPct": 6,
+        "valueUpliftHighPct": 11.7,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 147.3,
+        "cost": 18150,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1574.4,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 787.2,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -3626.7,
+            "gasSavingKwh": 12800,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 952,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10002:recommended:insulation-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Sub-optimal insulation below modern building regulation depth (270mm+).",
+          "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "package": {
+        "id": "P10002:recommended:insulation-thermostat-heat_pump-solar",
+        "propertyId": "P10002",
+        "mode": "demo",
+        "selectedRetrofits": ["insulation", "thermostat", "heat_pump", "solar"],
+        "score": 48,
+        "classification": "Poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 50,
+            "contribution": 12.5,
+            "reason": "EPC Band D: Median UK domestic average; significant retrofit potential"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 65.9,
+            "contribution": 13.18,
+            "reason": "Moderate consumption intensity (147.3 kWh/m²): near typical UK dual-fuel consumption"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 50,
+            "contribution": 7.5,
+            "reason": "Average insulation: Partial loft or standard unfilled cavity; room for fabric upgrades"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 40,
+            "contribution": 6,
+            "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 75,
+            "contribution": 7.5,
+            "reason": "Double glazing: Standard UK multi-chamber thermal insulation barrier"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 3400,
+        "baselineGasKwh": 12800,
+        "baselinePurchasedEnergyKwh": 16200,
+        "electricityKwh": 4601.5,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 4601.5,
+        "electricitySavingKwh": -1201.5,
+        "gasSavingKwh": 12800,
+        "energySavingKwh": 11598.5,
+        "improvementPotentialPct": 71.6,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 2087.7,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 285000,
+        "valueLow": 302100,
+        "valueHigh": 318300,
+        "valueUpliftLowPct": 6,
+        "valueUpliftHighPct": 11.7,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 147.3,
+        "cost": 18150,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1574.4,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 787.2,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -3626.7,
+            "gasSavingKwh": 12800,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 952,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10002:recommended:insulation-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Sub-optimal insulation below modern building regulation depth (270mm+).",
+          "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "selected": ["insulation", "thermostat", "heat_pump", "solar"]
+    },
+    {
+      "property": {
+        "id": "P10003",
+        "name": "Property P10003",
+        "customerId": "C1003",
+        "type": "detached",
+        "yearBuilt": 1998,
+        "region": "South East",
+        "floorArea": 145,
+        "bedrooms": 4,
+        "epcRating": "C",
+        "electricityKwh": 4200,
+        "gasKwh": 11500,
+        "currentValue": 475000,
+        "budget": 0,
+        "roofAccess": true,
+        "insulation": "good",
+        "heating": "gas_boiler",
+        "glazing": "double",
+        "solar": "none",
+        "smartControls": true
+      },
+      "baseline": {
+        "id": "P10003:recommended:heat_pump-solar",
+        "propertyId": "P10003",
+        "mode": "demo",
+        "selectedRetrofits": ["heat_pump", "solar"],
+        "score": 65,
+        "classification": "Good",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 70,
+            "contribution": 17.5,
+            "reason": "EPC Band C: Good domestic standard meeting UK 2035 Clean Growth target"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 77.5,
+            "contribution": 15.5,
+            "reason": "Efficient consumption intensity (108.3 kWh/m²): well below UK domestic average (~160 kWh/m²)"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 90,
+            "contribution": 13.5,
+            "reason": "Good insulation: Loft >=270mm and cavity/solid wall insulation verified"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 40,
+            "contribution": 6,
+            "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 75,
+            "contribution": 7.5,
+            "reason": "Double glazing: Standard UK multi-chamber thermal insulation barrier"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 90,
+            "contribution": 4.5,
+            "reason": "Smart controls present: Programmable scheduling, weather compensation, or zone temperature control active"
+          }
+        ],
+        "baselineElectricityKwh": 4200,
+        "baselineGasKwh": 11500,
+        "baselinePurchasedEnergyKwh": 15700,
+        "electricityKwh": 5370,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 5370,
+        "electricitySavingKwh": -1170,
+        "gasSavingKwh": 11500,
+        "energySavingKwh": 10330,
+        "improvementPotentialPct": 65.8,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 1856.9,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 475000,
+        "valueLow": 496400,
+        "valueHigh": 517300,
+        "valueUpliftLowPct": 4.5,
+        "valueUpliftHighPct": 8.9,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 108.3,
+        "cost": 17000,
+        "recommendations": [
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -3258.3,
+            "gasSavingKwh": 11500,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1176,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10003:recommended:heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "package": {
+        "id": "P10003:recommended:heat_pump-solar",
+        "propertyId": "P10003",
+        "mode": "demo",
+        "selectedRetrofits": ["heat_pump", "solar"],
+        "score": 65,
+        "classification": "Good",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 70,
+            "contribution": 17.5,
+            "reason": "EPC Band C: Good domestic standard meeting UK 2035 Clean Growth target"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 77.5,
+            "contribution": 15.5,
+            "reason": "Efficient consumption intensity (108.3 kWh/m²): well below UK domestic average (~160 kWh/m²)"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 90,
+            "contribution": 13.5,
+            "reason": "Good insulation: Loft >=270mm and cavity/solid wall insulation verified"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 40,
+            "contribution": 6,
+            "reason": "Mains gas boiler: High carbon fossil combustion; subject to future boiler phase-out targets"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 75,
+            "contribution": 7.5,
+            "reason": "Double glazing: Standard UK multi-chamber thermal insulation barrier"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 90,
+            "contribution": 4.5,
+            "reason": "Smart controls present: Programmable scheduling, weather compensation, or zone temperature control active"
+          }
+        ],
+        "baselineElectricityKwh": 4200,
+        "baselineGasKwh": 11500,
+        "baselinePurchasedEnergyKwh": 15700,
+        "electricityKwh": 5370,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 5370,
+        "electricitySavingKwh": -1170,
+        "gasSavingKwh": 11500,
+        "energySavingKwh": 10330,
+        "improvementPotentialPct": 65.8,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 1856.9,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 475000,
+        "valueLow": 496400,
+        "valueHigh": 517300,
+        "valueUpliftLowPct": 4.5,
+        "valueUpliftHighPct": 8.9,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 108.3,
+        "cost": 17000,
+        "recommendations": [
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -3258.3,
+            "gasSavingKwh": 11500,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1176,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10003:recommended:heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Fossil-fuel dependent gas boiler contributes direct Scope 1 carbon emissions.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "selected": ["heat_pump", "solar"]
+    },
+    {
+      "property": {
+        "id": "P10005",
+        "name": "Property P10005",
+        "customerId": "C1005",
+        "type": "detached",
+        "yearBuilt": 1935,
+        "region": "South West",
+        "floorArea": 175,
+        "bedrooms": 5,
+        "epcRating": "F",
+        "electricityKwh": 5100,
+        "gasKwh": 22000,
+        "currentValue": 420000,
+        "budget": 0,
+        "roofAccess": true,
+        "insulation": "poor",
+        "heating": "oil_boiler",
+        "glazing": "single",
+        "solar": "none",
+        "smartControls": false
+      },
+      "baseline": {
+        "id": "P10005:recommended:insulation-glazing-thermostat-heat_pump-solar",
+        "propertyId": "P10005",
+        "mode": "demo",
+        "selectedRetrofits": [
+          "insulation",
+          "glazing",
+          "thermostat",
+          "heat_pump",
+          "solar"
+        ],
+        "score": 26,
+        "classification": "Very poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 20,
+            "contribution": 5,
+            "reason": "EPC Band F: Poor efficiency; fails UK Minimum Energy Efficiency Standards (MEES)"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 63.4,
+            "contribution": 12.68,
+            "reason": "Moderate consumption intensity (154.9 kWh/m²): near typical UK dual-fuel consumption"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Oil boiler: Heavy carbon intensity and high local air pollutant emissions"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 20,
+            "contribution": 2,
+            "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 5100,
+        "baselineGasKwh": 22000,
+        "baselinePurchasedEnergyKwh": 27100,
+        "electricityKwh": 7084,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 7084,
+        "electricitySavingKwh": -1984,
+        "gasSavingKwh": 22000,
+        "energySavingKwh": 20016,
+        "improvementPotentialPct": 73.86,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 3605.1,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 420000,
+        "valueLow": 457800,
+        "valueHigh": 487200,
+        "valueUpliftLowPct": 9,
+        "valueUpliftHighPct": 16,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 154.9,
+        "cost": 23650,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 2706,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "glazing",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+            "priority": 2,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1804,
+            "cost": 5500,
+            "costLow": 3500,
+            "costHigh": 7500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1353,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -6233.3,
+            "gasSavingKwh": 22000,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1428,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10005:recommended:insulation-glazing-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes glazing to show how reducing heat loss can be explained alongside estimated savings.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Double glazing",
+              "body": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+          "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+          "Fossil-fuel dependent oil boiler contributes direct Scope 1 carbon emissions.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+          "Statutory EPC Band F falls below the UK 2035 Clean Growth target (Band C)."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "package": {
+        "id": "P10005:recommended:insulation-glazing-thermostat-heat_pump-solar",
+        "propertyId": "P10005",
+        "mode": "demo",
+        "selectedRetrofits": [
+          "insulation",
+          "glazing",
+          "thermostat",
+          "heat_pump",
+          "solar"
+        ],
+        "score": 26,
+        "classification": "Very poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 20,
+            "contribution": 5,
+            "reason": "EPC Band F: Poor efficiency; fails UK Minimum Energy Efficiency Standards (MEES)"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 63.4,
+            "contribution": 12.68,
+            "reason": "Moderate consumption intensity (154.9 kWh/m²): near typical UK dual-fuel consumption"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Oil boiler: Heavy carbon intensity and high local air pollutant emissions"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 20,
+            "contribution": 2,
+            "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 5100,
+        "baselineGasKwh": 22000,
+        "baselinePurchasedEnergyKwh": 27100,
+        "electricityKwh": 7084,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 7084,
+        "electricitySavingKwh": -1984,
+        "gasSavingKwh": 22000,
+        "energySavingKwh": 20016,
+        "improvementPotentialPct": 73.86,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 3605.1,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 420000,
+        "valueLow": 457800,
+        "valueHigh": 487200,
+        "valueUpliftLowPct": 9,
+        "valueUpliftHighPct": 16,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 154.9,
+        "cost": 23650,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 2706,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "glazing",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+            "priority": 2,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1804,
+            "cost": 5500,
+            "costLow": 3500,
+            "costHigh": 7500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 0,
+            "gasSavingKwh": 1353,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": -6233.3,
+            "gasSavingKwh": 22000,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1428,
+            "gasSavingKwh": 0,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10005:recommended:insulation-glazing-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes glazing to show how reducing heat loss can be explained alongside estimated savings.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Double glazing",
+              "body": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+          "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+          "Fossil-fuel dependent oil boiler contributes direct Scope 1 carbon emissions.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+          "Statutory EPC Band F falls below the UK 2035 Clean Growth target (Band C)."
+        ],
+        "warnings": [],
+        "currentScoreOnly": true
+      },
+      "selected": ["insulation", "glazing", "thermostat", "heat_pump", "solar"]
+    },
+    {
+      "property": {
+        "id": "P10006",
+        "name": "Property P10006",
+        "customerId": "C1006",
+        "type": "flat",
+        "yearBuilt": 1985,
+        "region": "London",
+        "floorArea": 58,
+        "bedrooms": 2,
+        "epcRating": "D",
+        "electricityKwh": 6200,
+        "gasKwh": 12000,
+        "currentValue": 340000,
+        "budget": 0,
+        "roofAccess": false,
+        "insulation": "average",
+        "heating": "electric_resistive",
+        "glazing": "double",
+        "solar": "none",
+        "smartControls": false
+      },
+      "baseline": {
+        "id": "P10006:recommended:insulation-thermostat-heat_pump-solar",
+        "propertyId": "P10006",
+        "mode": "demo",
+        "selectedRetrofits": ["insulation", "thermostat", "heat_pump", "solar"],
+        "score": 41,
+        "classification": "Poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 50,
+            "contribution": 12.5,
+            "reason": "EPC Band D: Median UK domestic average; significant retrofit potential"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 24.2,
+            "contribution": 4.84,
+            "reason": "High consumption intensity (313.8 kWh/m²): excessive energy loss per floor area"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 50,
+            "contribution": 7.5,
+            "reason": "Average insulation: Partial loft or standard unfilled cavity; room for fabric upgrades"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 45,
+            "contribution": 6.75,
+            "reason": "Electric direct resistive: Decarbonising grid source, but high running cost and 1:1 COP"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 75,
+            "contribution": 7.5,
+            "reason": "Double glazing: Standard UK multi-chamber thermal insulation barrier"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 6200,
+        "baselineGasKwh": 12000,
+        "baselinePurchasedEnergyKwh": 18200,
+        "electricityKwh": 2041.2,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 2041.2,
+        "electricitySavingKwh": 4158.8,
+        "gasSavingKwh": 12000,
+        "energySavingKwh": 16158.8,
+        "improvementPotentialPct": 88.78,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 3051.6,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 340000,
+        "valueLow": 360400,
+        "valueHigh": 379800,
+        "valueUpliftLowPct": 6,
+        "valueUpliftHighPct": 11.7,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 313.8,
+        "cost": 18150,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 558,
+            "gasSavingKwh": 12000,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 279,
+            "gasSavingKwh": 12000,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": 3100,
+            "gasSavingKwh": 12000,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1736,
+            "gasSavingKwh": 12000,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10006:recommended:insulation-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Sub-optimal insulation below modern building regulation depth (270mm+).",
+          "Direct electric resistive heating operates at 1:1 COP, causing elevated running costs.",
+          "Excessive consumption intensity (313.8 kWh/m² vs UK benchmark ~150 kWh/m²).",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks."
+        ],
+        "warnings": [
+          "Annual gas consumption not specified: imputed with UK typical domestic profile (12,000 kWh/yr)"
+        ],
+        "currentScoreOnly": true
+      },
+      "package": {
+        "id": "P10006:recommended:insulation-thermostat-heat_pump-solar",
+        "propertyId": "P10006",
+        "mode": "demo",
+        "selectedRetrofits": ["insulation", "thermostat", "heat_pump", "solar"],
+        "score": 41,
+        "classification": "Poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 50,
+            "contribution": 12.5,
+            "reason": "EPC Band D: Median UK domestic average; significant retrofit potential"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 24.2,
+            "contribution": 4.84,
+            "reason": "High consumption intensity (313.8 kWh/m²): excessive energy loss per floor area"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 50,
+            "contribution": 7.5,
+            "reason": "Average insulation: Partial loft or standard unfilled cavity; room for fabric upgrades"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 45,
+            "contribution": 6.75,
+            "reason": "Electric direct resistive: Decarbonising grid source, but high running cost and 1:1 COP"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 75,
+            "contribution": 7.5,
+            "reason": "Double glazing: Standard UK multi-chamber thermal insulation barrier"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 6200,
+        "baselineGasKwh": 12000,
+        "baselinePurchasedEnergyKwh": 18200,
+        "electricityKwh": 2041.2,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 2041.2,
+        "electricitySavingKwh": 4158.8,
+        "gasSavingKwh": 12000,
+        "energySavingKwh": 16158.8,
+        "improvementPotentialPct": 88.78,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 3051.6,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 340000,
+        "valueLow": 360400,
+        "valueHigh": 379800,
+        "valueUpliftLowPct": 6,
+        "valueUpliftHighPct": 11.7,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 313.8,
+        "cost": 18150,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "Medium",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 558,
+            "gasSavingKwh": 12000,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 279,
+            "gasSavingKwh": 12000,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "heat_pump",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.",
+            "priority": 4,
+            "electricitySavingKwh": 3100,
+            "gasSavingKwh": 12000,
+            "cost": 10500,
+            "costLow": 8000,
+            "costHigh": 14000,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1736,
+            "gasSavingKwh": 12000,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10006:recommended:insulation-thermostat-heat_pump-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Air-source heat pump",
+              "body": "This example includes a heating-system change. A real assessment must check suitability, installation requirements and the effects on both fuels."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Sub-optimal insulation below modern building regulation depth (270mm+).",
+          "Direct electric resistive heating operates at 1:1 COP, causing elevated running costs.",
+          "Excessive consumption intensity (313.8 kWh/m² vs UK benchmark ~150 kWh/m²).",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks."
+        ],
+        "warnings": [
+          "Annual gas consumption not specified: imputed with UK typical domestic profile (12,000 kWh/yr)"
+        ],
+        "currentScoreOnly": true
+      },
+      "selected": ["insulation", "thermostat", "heat_pump", "solar"]
+    },
+    {
+      "property": {
+        "id": "P10007",
+        "name": "Property P10007",
+        "customerId": "C1007",
+        "type": "semi-detached",
+        "yearBuilt": 1960,
+        "region": "Yorkshire and the Humber",
+        "floorArea": 105,
+        "bedrooms": 3,
+        "epcRating": "E",
+        "electricityKwh": 3900,
+        "gasKwh": 14000,
+        "currentValue": 230000,
+        "budget": 0,
+        "roofAccess": true,
+        "insulation": "poor",
+        "heating": "heat_pump",
+        "glazing": "single",
+        "solar": "none",
+        "smartControls": false
+      },
+      "baseline": {
+        "id": "P10007:recommended:insulation-glazing-thermostat-solar",
+        "propertyId": "P10007",
+        "mode": "demo",
+        "selectedRetrofits": ["insulation", "glazing", "thermostat", "solar"],
+        "score": 40,
+        "classification": "Poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 35,
+            "contribution": 8.75,
+            "reason": "EPC Band E: Sub-standard thermal efficiency; high vulnerability to fuel poverty"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 58.2,
+            "contribution": 11.64,
+            "reason": "Moderate consumption intensity (170.5 kWh/m²): near typical UK dual-fuel consumption"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 95,
+            "contribution": 14.25,
+            "reason": "Heat pump: Zero direct fossil combustion; high seasonal coefficient of performance (SPF ~3.0)"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 20,
+            "contribution": 2,
+            "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 3900,
+        "baselineGasKwh": 14000,
+        "baselinePurchasedEnergyKwh": 17900,
+        "electricityKwh": 2397.5,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 2397.5,
+        "electricitySavingKwh": 1502.5,
+        "gasSavingKwh": 14000,
+        "energySavingKwh": 15502.5,
+        "improvementPotentialPct": 86.61,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 2866.7,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 230000,
+        "valueLow": 242200,
+        "valueHigh": 252800,
+        "valueUpliftLowPct": 5.3,
+        "valueUpliftHighPct": 9.9,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 170.5,
+        "cost": 13150,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 292.5,
+            "gasSavingKwh": 14000,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "glazing",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+            "priority": 2,
+            "electricitySavingKwh": 195,
+            "gasSavingKwh": 14000,
+            "cost": 5500,
+            "costLow": 3500,
+            "costHigh": 7500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 146.2,
+            "gasSavingKwh": 14000,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1092,
+            "gasSavingKwh": 14000,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10007:recommended:insulation-glazing-thermostat-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes glazing to show how reducing heat loss can be explained alongside estimated savings.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Double glazing",
+              "body": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+          "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+          "Statutory EPC Band E falls below the UK 2035 Clean Growth target (Band C)."
+        ],
+        "warnings": [
+          "Physical contradiction detected: Property specifies heat pump heating but reports 14000 kWh/yr gas. Residual gas attributed to cooking/secondary flame or dual fuel."
+        ],
+        "currentScoreOnly": true
+      },
+      "package": {
+        "id": "P10007:recommended:insulation-glazing-thermostat-solar",
+        "propertyId": "P10007",
+        "mode": "demo",
+        "selectedRetrofits": ["insulation", "glazing", "thermostat", "solar"],
+        "score": 40,
+        "classification": "Poor",
+        "components": [
+          {
+            "id": "efficiency",
+            "label": "Energy efficiency (EPC)",
+            "weight": 0.25,
+            "score": 35,
+            "contribution": 8.75,
+            "reason": "EPC Band E: Sub-standard thermal efficiency; high vulnerability to fuel poverty"
+          },
+          {
+            "id": "intensity",
+            "label": "Metered energy consumption intensity",
+            "weight": 0.2,
+            "score": 58.2,
+            "contribution": 11.64,
+            "reason": "Moderate consumption intensity (170.5 kWh/m²): near typical UK dual-fuel consumption"
+          },
+          {
+            "id": "insulation",
+            "label": "Insulation",
+            "weight": 0.15,
+            "score": 15,
+            "contribution": 2.25,
+            "reason": "Poor insulation: Uninsulated loft/roof and uninsulated solid walls leading to heavy fabric heat loss"
+          },
+          {
+            "id": "heating",
+            "label": "Heating system",
+            "weight": 0.15,
+            "score": 95,
+            "contribution": 14.25,
+            "reason": "Heat pump: Zero direct fossil combustion; high seasonal coefficient of performance (SPF ~3.0)"
+          },
+          {
+            "id": "glazing",
+            "label": "Windows and glazing",
+            "weight": 0.1,
+            "score": 20,
+            "contribution": 2,
+            "reason": "Single glazing: Severe conductive window heat loss and condensation vulnerability"
+          },
+          {
+            "id": "renewables",
+            "label": "Renewable energy",
+            "weight": 0.1,
+            "score": 5,
+            "contribution": 0.5,
+            "reason": "No renewable generation: 100% reliant on grid power and external gas infrastructure"
+          },
+          {
+            "id": "controls",
+            "label": "Smart energy management",
+            "weight": 0.05,
+            "score": 20,
+            "contribution": 1,
+            "reason": "Standard manual controls: Lacks automated scheduling and temperature optimisation"
+          }
+        ],
+        "baselineElectricityKwh": 3900,
+        "baselineGasKwh": 14000,
+        "baselinePurchasedEnergyKwh": 17900,
+        "electricityKwh": 2397.5,
+        "gasKwh": 0,
+        "purchasedEnergyKwh": 2397.5,
+        "electricitySavingKwh": 1502.5,
+        "gasSavingKwh": 14000,
+        "energySavingKwh": 15502.5,
+        "improvementPotentialPct": 86.61,
+        "annualEmissionsKg": null,
+        "carbonReductionKg": 2866.7,
+        "carbonSource": "Example source: UK DESNZ / DEFRA 2024 conversion factors. No emissions calculation runs in this frontend.",
+        "baselineValue": 230000,
+        "valueLow": 242200,
+        "valueHigh": 252800,
+        "valueUpliftLowPct": 5.3,
+        "valueUpliftHighPct": 9.9,
+        "projectedEpcRating": null,
+        "valueCaveat": "This is an illustrative value range, not a valuation, guaranteed sale price or prediction for your property.",
+        "energyIntensityKwhM2": 170.5,
+        "cost": 13150,
+        "recommendations": [
+          {
+            "id": "insulation",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.",
+            "priority": 1,
+            "electricitySavingKwh": 292.5,
+            "gasSavingKwh": 14000,
+            "cost": 900,
+            "costLow": 600,
+            "costHigh": 1200,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "glazing",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings.",
+            "priority": 2,
+            "electricitySavingKwh": 195,
+            "gasSavingKwh": 14000,
+            "cost": 5500,
+            "costLow": 3500,
+            "costHigh": 7500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "thermostat",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.",
+            "priority": 3,
+            "electricitySavingKwh": 146.2,
+            "gasSavingKwh": 14000,
+            "cost": 250,
+            "costLow": 200,
+            "costHigh": 350,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          },
+          {
+            "id": "solar",
+            "feasible": true,
+            "suitability": "High",
+            "reason": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures.",
+            "priority": 5,
+            "electricitySavingKwh": 1092,
+            "gasSavingKwh": 14000,
+            "cost": 6500,
+            "costLow": 5000,
+            "costHigh": 8500,
+            "notes": "Illustrative standalone estimate. Real suitability and interactions must be returned by the backend."
+          }
+        ],
+        "explanation": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+        "assumptions": [
+          "All figures are saved illustrations for this example property, not predictions from the details you enter.",
+          "Individual retrofit estimates are shown separately from the combined package. A future backend must account for interactions.",
+          "Actual energy use, installation costs and sale value depend on property-specific information and professional assessment."
+        ],
+        "draft": {
+          "scenarioId": "P10007:recommended:insulation-glazing-thermostat-solar",
+          "summary": "This saved example demonstrates a structured renovation report: suitable improvements, energy by fuel, carbon impact and an indicative property-value range. It is sample text, not a live LLM response or an assessment of your entered property.",
+          "sections": [
+            {
+              "id": "recommendations",
+              "title": "Why these example improvements",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system.\nThis example includes glazing to show how reducing heat loss can be explained alongside estimated savings.\nThis example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information.\nThis example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            },
+            {
+              "id": "tradeoffs",
+              "title": "Trade-offs to consider",
+              "body": "Heating changes may increase electricity consumption while reducing gas. Solar can reduce grid imports. Read the separate fuel figures and the combined package; standalone savings should not be added together."
+            },
+            {
+              "id": "limitations",
+              "title": "What this example cannot promise",
+              "body": "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.\nActual costs, savings and property value must come from a connected backend and may differ from these examples."
+            }
+          ],
+          "why": [
+            {
+              "title": "Loft insulation",
+              "body": "This example starts with roof insulation to show how a fabric improvement can be prioritised before changes to the heating system."
+            },
+            {
+              "title": "Double glazing",
+              "body": "This example includes glazing to show how reducing heat loss can be explained alongside estimated savings."
+            },
+            {
+              "title": "Smart thermostat",
+              "body": "This example includes heating controls to demonstrate a smaller improvement with its own suitability and cost information."
+            },
+            {
+              "title": "Solar panels",
+              "body": "This example includes solar to show reduced grid imports. Solar generation and the underlying electricity demand are separate measures."
+            }
+          ],
+          "limitations": [
+            "This is a fixed frontend illustration. It does not rerun models or answer questions about your home.",
+            "Actual costs, savings and property value must come from a connected backend and may differ from these examples."
+          ]
+        },
+        "draftSource": "sample",
+        "keyIssues": [
+          "Uninsulated or deficient roof/loft and wall fabric leading to severe space heat loss.",
+          "Single glazing creates thermal bridging, condensation, and rapid window heat transmission.",
+          "Zero on-site renewable generation; 100% dependent on purchased grid electricity.",
+          "Lack of smart heating controls/thermostat prevents automated temperature zoning and setbacks.",
+          "Statutory EPC Band E falls below the UK 2035 Clean Growth target (Band C)."
+        ],
+        "warnings": [
+          "Physical contradiction detected: Property specifies heat pump heating but reports 14000 kWh/yr gas. Residual gas attributed to cooking/secondary flame or dual fuel."
+        ],
+        "currentScoreOnly": true
+      },
+      "selected": ["insulation", "glazing", "thermostat", "solar"]
+    }
+  ]
+}
