@@ -309,16 +309,12 @@ async def chat_what_if(req: ChatRequest) -> ChatResponse:
     Handles natural language what-if queries ("What if I install a heat pump and solar panels?").
     Reruns deterministic calculations and grounds explanations.
     """
-    # Find matching property
-    target_prop = None
-    if req.property_id:
-        for p in SAMPLE_PROPERTIES:
-            if p.property_id == req.property_id:
-                target_prop = p
-                break
-
-    if not target_prop:
-        target_prop = SAMPLE_PROPERTIES[0]
+    if req.property_input is not None:
+        target_prop = req.property_input
+    else:
+        target_prop = next((p for p in SAMPLE_PROPERTIES if p.property_id == req.property_id), None)
+        if target_prop is None:
+            raise HTTPException(status_code=404, detail=f"Property '{req.property_id}' not found. Supply property_input for custom homes.")
 
     summary = validate_and_summarize_property(target_prop)
     return await handle_what_if_interaction(summary, req.query, req.selected_retrofit_ids)
