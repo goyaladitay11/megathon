@@ -314,7 +314,7 @@ export default function BusinessDashboard() {
         </div>
         <p className="b-disclosure">
           {portfolio.length} illustrative properties demonstrate the portfolio
-          view. Scores, savings and written explanations are fixed examples, not
+          view. Scores, savings and written explanations are modelled estimates, not
           results for real customers or responses from an AI system. Estimates
           are not guarantees or market valuations.
         </p>

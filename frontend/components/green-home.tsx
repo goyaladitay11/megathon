@@ -121,10 +121,15 @@ export default function GreenHome({ view }: { view: View }) {
     setSelected(ids);
   }
 
-  function loadSample(result: Scenario) {
-    setScenario(result);
-    setSelected(result.selectedRetrofits);
+  async function loadSample(result: Scenario) {
+    if (!comparisonBase || busy) return;
+    const ids = result.selectedRetrofits;
+    setSelected(ids);
+    setBusy(true);
     setError("");
+    try { setScenario(await runScenario(property, ids, comparisonBase)); }
+    catch (e) { setError(String(e)); }
+    finally { setBusy(false); }
   }
 
   async function applyScenario() {
@@ -373,7 +378,7 @@ export default function GreenHome({ view }: { view: View }) {
 
       {view !== "landing" && (
         <div className="mode">
-          Frontend preview · fixed sample reports · no live ML or LLM
+          Green Home Twin · live property assessments and retrofit estimates
         </div>
       )}
 
@@ -428,7 +433,7 @@ export default function GreenHome({ view }: { view: View }) {
                     <Sparkles size={20} />
                     <p>
                       {goalNames[profile.goal]} is your priority. Explore the
-                      report using fixed, clearly labelled sample data.
+                      report based on the property details you provide.
                     </p>
                   </div>
                   <Link
@@ -502,7 +507,7 @@ export default function GreenHome({ view }: { view: View }) {
                       </fieldset>
                       <p className="note">
                         No email needed. Your name, goal and property details
-                        stay in this browser. They personalise this preview; no
+                        stay in this browser and personalise your home assessment; no
                         data is sent to a backend.
                       </p>
                     </>
@@ -721,7 +726,7 @@ export default function GreenHome({ view }: { view: View }) {
                       </label>
                       <p className="note">
                         Your confirmed details and planning budget stay in this
-                        browser. The next screen shows a separate sample report
+                        browser. The next screen calculates your home report
                         until the backend is connected.
                       </p>
                     </>
@@ -811,7 +816,7 @@ export default function GreenHome({ view }: { view: View }) {
                     aria-label="Sample report subject"
                   >
                     <span className="eyebrow">
-                      SAMPLE REPORT · YOUR DETAILS HAVE NOT BEEN CALCULATED
+                      LIVE PROPERTY REPORT · CALCULATED USING FASTAPI
                     </span>
                     <p>
                       The report below belongs to{" "}
@@ -852,9 +857,8 @@ export default function GreenHome({ view }: { view: View }) {
                             changes the report without calculating predictions.
                           </p>
                         </div>
-                        {useSample && (
-                          <div className="gh-sample-presets">
-                            <span>LOAD A SAMPLE PLAN</span>
+                        {(<div className="gh-sample-presets">
+                            <span>QUICK PLAN OPTIONS</span>
                             <button onClick={() => loadSample(sampleBaseline)}>
                               Starting home
                             </button>
@@ -920,7 +924,7 @@ export default function GreenHome({ view }: { view: View }) {
                         <div className="gh-plan-actions">
                           <span>
                             {scenarioCurrent
-                              ? "Your controls match the confirmed package."
+                              ? "Your controls match the calculated package."
                               : "Draft package · changes have not been applied."}
                           </span>
                           <div className="actions">
@@ -944,8 +948,8 @@ export default function GreenHome({ view }: { view: View }) {
                     )}
                     <p className="gh-confirmed-note" role="status">
                       {!scenarioCurrent
-                        ? "Your selection is a draft. Load a matching sample plan to change the preview."
-                        : `${scenario.selectedRetrofits.length} improvements in this fixed sample package. The score describes the sample home’s current condition.`}
+                        ? "Your selection is a draft. Calculate it to see live results."
+                        : `${scenario.selectedRetrofits.length} improvements in your calculated package. The score describes your home’s current condition.`}
                     </p>
                     <AssessmentReport
                       scenario={scenario}
@@ -1033,7 +1037,7 @@ export default function GreenHome({ view }: { view: View }) {
                             </button>
                           </div>
                           <small>
-                            This frontend provides three sample plans above.
+                            Use the plan options or choose individual upgrades above.
                             Custom scenarios and new explanations need a backend
                             connection.
                           </small>
