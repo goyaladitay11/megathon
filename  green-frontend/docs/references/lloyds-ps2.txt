@@ -1,0 +1,351 @@
+Megathon X: Singularity | Problem Statement 2 | Lloyds
+
+
+Green Home Score and Retrofit Recommendation Engine
+
+
+1 Challenge
+Many customers want an energy-efficient home but do not know where to start. Build an AI system that
+analyses property characteristics, energy consumption and existing home features to:
+
+1. calculate a Green Home Score;
+2. identify homes with poor energy efficiency;
+3. recommend suitable improvements, such as insulation, heat pumps, solar panels, double glazing
+   and smart energy controls;
+4. estimate potential energy savings and carbon reduction;
+5. estimate the potential increase in property value.
+
+The system should answer: How green is my home today, what should I improve, how much energy and
+carbon could I save, and could this increase my property’s value?
+Core rule. The score, savings, carbon and value figures come from documented models and calculations.
+The LLM only explains them and answers what-if questions; it must not calculate the score or invent
+estimates. For a what-if request, the relevant models and calculations must first be rerun for the proposed
+scenario, and the LLM then explains their outputs.
+
+
+2 Green Home Score
+Each property gets a score from 0 to 100, computed as a weighted sum of seven component sub-scores
+sk , each from 0 to 100:                        ∑︂
+                                             S=     wk sk
+                                                    k
+The weights wk are fixed and are expressed as fractions in the formula (so k wk = 1). How each sub-score
+                                                                          ∑︁
+is derived is the team’s choice, but the mapping must be documented, and a better state must never give
+a lower sub-score. To reduce unintended double-counting, Energy efficiency should reflect the property’s
+recorded energy rating (or a documented rating-based measure), while Energy consumption intensity
+should reflect annualised metered energy per square metre. If the same input affects more than one
+component, teams must justify this choice. Round the final score to the nearest integer for reporting and
+classification.
+
+             Component                                    Weight
+
+             Energy efficiency                              25%      Score     Classification
+             Energy consumption intensity (kWh per m2 )     20%
+             Insulation                                     15%      80–100    Highly efficient
+             Heating system                                 15%      65–79     Good
+             Windows and glazing                            10%      50–64     Moderate
+             Renewable energy                               10%      30–49     Poor
+             Smart energy management                         5%      0–29      Very poor
+
+             Total                                         100%
+Megathon X: Singularity                                                            Problem Statement 2 | Lloyds
+
+
+The system must show why a property received its score, including each component’s contribution.
+Example. Property P10001: rating E, high electricity and gas use, no solar, poor insulation, gas boiler,
+single glazing. Score 38/100, Poor.
+
+
+3 Identify Poorly Performing Homes
+Flag properties classified as Poor or Very poor and list their key issues (for example high energy use per
+m2 , poor insulation, old heating system, single glazing, no renewable generation).
+Rank properties by improvement potential: the estimated percentage reduction in annual purchased
+energy achievable with the retrofits feasible for that property. For this metric, annual purchased energy
+is the sum of grid electricity imported and gas consumed, in kWh/year. Calculate improvement potential
+as 100 × (Ebaseline − Eafter )/Ebaseline , where both energy totals use the same accounting convention.
+If baseline energy is zero or unavailable, report the metric as unavailable and document the handling.
+Report electricity and gas changes separately, since a retrofit may reduce one while increasing the other.
+Solar panels reduce grid imports, not the home’s underlying energy demand. A large house must not
+be classed as inefficient solely because its total consumption is higher: consider energy intensity and
+relevant property characteristics.
+
+
+4 Retrofit Recommendations
+Return a prioritised list of retrofits that are feasible for the property, not every retrofit available. Each
+item gives its suitability (High, Medium or Low), estimated saving and reason. The order should reflect
+how retrofits interact; for example, insulation before a heat pump. The impacts below are illustrative
+and refer to the quantity named in each row; they are not directly comparable or additive. Any retrofit
+catalogue used by the team takes precedence over these illustrative figures; teams must document its
+source and assumptions.
+
+    Retrofit                  Illustrative impact
+
+    Roof or loft insulation   12–18% reduction in space-heating energy demand
+    Heat pump                 15–25% reduction in purchased energy; electricity use may rise as gas use falls
+    Solar panels              20–35% reduction in grid electricity imports
+    Double glazing            8–12% reduction in space-heating energy demand
+    Smart thermostat          5–10% reduction in heating energy use
+
+
+
+5 Energy Savings
+Estimate the saving for each recommended retrofit and for the package as a whole, in kWh/year, separately
+for electricity and gas. Use a consistent baseline and estimate the post-retrofit consumption for each fuel.
+Show an increase in consumption as a negative saving. For a package, account for interactions between
+retrofits rather than simply adding their individual estimates.
+Illustrative aggregate example. Baseline electricity use of 4,800 kWh/year plus gas use of 12,000 kWh/year
+gives 16,800 kWh/year of purchased energy. If a retrofit is estimated to reduce this combined amount by
+15%, the aggregate saving is 16,800 × 0.15 = 2,520 kWh/year. This aggregate example does not determine
+the electricity and gas savings: the model must estimate and report the change for each fuel separately.
+The full package may, for example, have a net estimated saving of 5,500 kWh/year after accounting for
+interactions.
+All savings are labelled as estimates, not guarantees.
+
+
+
+                                                        2
+Megathon X: Singularity                                                          Problem Statement 2 | Lloyds
+
+
+6 Carbon Reduction
+Convert energy savings to carbon using documented emissions factors for each fuel. Teams may use
+suitable factors from a reliable source, with units and source recorded:
+                                                 ∑︂
+                                       ∆C =              ∆Ef × EFf
+                                               f ∈{elec, gas}
+
+where ∆Ef = Ef ,baseline − Ef ,after is the change in consumption of fuel f , in kWh/year, and EFf is its factor
+in kg CO2 e per kWh. A positive ∆Ef is a saving; a negative value is an increase in consumption. A positive
+∆C therefore represents an emissions reduction. Per-fuel calculation matters because a heat pump may
+lower gas use while raising electricity use.
+
+
+7 Property Value Impact
+Estimate the potential change in property value as a range, not a single number.
+Example. Current value £350,000; rating E to C; indicative uplift 2–5%; potential value £357,000 to £367,500.
+Describe it as an estimated potential property-value impact based on historical and market relationships in
+the dataset prepared by the team. Compare a consistent baseline with the proposed post-retrofit scenario
+(for example, predicted values for the same property before and after the proposed improvements,
+holding other property characteristics constant). Account for location, size, property type and market
+conditions. If the available observational data and method cannot establish a causal retrofit effect,
+describe the result as an indicative estimate rather than a guaranteed or proven causal increase.
+
+
+8 Expected Outputs
+
+Output                               Example
+
+Green Home Score                     38/100
+Efficiency classification            Poor
+Recommended improvements             Insulation, heat pump, solar
+Potential annual energy savings      5,500 kWh/year net, with electricity and gas changes reported separately
+Potential annual carbon reduction    1.2 t CO2 e/year, calculated from the per-fuel changes
+Potential property-value impact      +2–5% (indicative range)
+
+
+Pipeline. Property, energy and sales data → Feature engineering → Green Home Score → Efficiency
+detector → Retrofit engine → Savings, carbon and value models → LLM explanation → Customer dash-
+board.
+What-if flow. A what-if request updates the proposed retrofit scenario, reruns the relevant savings, carbon
+and value calculations, and passes those computed results to the LLM for explanation. The LLM must not
+invent scenario outputs.
+Suggested methods. Score: explainable weighted scoring. Energy use: regression (XGBoost, LightGBM,
+random forest, neural network). Retrofits: classification or recommendation model. Carbon: deterministic
+calculation. Value: regression on property features, rating, retrofits and sales history. LLM: explains
+the score and recommendations, and answers what-if questions using values computed by the other
+components.
+
+
+
+
+                                                        3
+Megathon X: Singularity                                                            Problem Statement 2 | Lloyds
+
+
+9 Dataset
+Teams are expected to prepare the data needed for their solution. They may generate synthetic property,
+energy, retrofit and sales data, use suitable publicly available datasets that may be lawfully used, or
+combine both. Real personal or confidential customer data must not be used; public datasets must be
+used in accordance with their licences and applicable restrictions. The tables below suggest entities
+and fields. Teams may adapt them, provided their data supports the required outputs and functional
+requirements. Teams must document data sources, schema, assumptions and limitations, and the
+generation process and label-generation rules for synthetic data.
+Teams must use property-level train, validation and test splits so that records for the same property do
+not appear in multiple splits. Where multiple properties belong to one customer, or customer memory is
+used, teams should split by customer to avoid leakage. Teams must also avoid using fields that would
+not be available at prediction time. Monthly energy usage should be annualised consistently using the
+available months; missing months or fields must be documented and handled explicitly rather than
+treated as zero by default.
+
+Table                        Suggested fields
+
+Properties                   property_id, customer_id (if applicable), property_type, age, floor_area, bedrooms,
+                             energy_rating, heating, insulation, glazing, solar, smart_controls, region, value
+Energy usage                 property_id, month, electricity_kwh, gas_kwh
+Retrofit catalogue           retrofit, applicability conditions, indicative cost, typical impact
+Emissions factors            fuel, kg_co2e_per_kwh, source
+Retrofit history             property_id, retrofit, completion_date
+Sales history                property_id, date, price, energy_rating_at_sale
+
+Labels/reference estimates   improvement potential or ranking; retrofit feasibility/relevance; per-fuel savings;
+                             property-value impact, as applicable
+
+
+Teams must provide or construct the reference labels or estimates needed to evaluate the required outputs,
+including improvement-potential rankings, retrofit feasibility/relevance, per-fuel savings, and property-
+value impact. These may be derived from observed data, documented rules, suitable published sources, or
+a simulator, as appropriate. Teams must document how the targets were obtained or generated. Synthetic
+labels must reflect plausible relationships with the input features rather than being assigned arbitrarily.
+If target values are generated by rules or a simulator, teams must disclose those rules and acknowledge
+that agreement with synthetic targets alone does not establish real-world predictive accuracy.
+Teams must use documented emissions factors for all carbon estimates, including units and sources.
+Where appropriate factors are not included in their data, teams must source suitable factors and include
+them with the submission. The data schema must distinguish the current property-value estimate used
+as a baseline from historical sale prices, and identify fields unavailable at prediction time.
+Because teams may use different datasets and label-generation methods, their numerical evaluation
+results may not be directly comparable. Judges will consider data quality, the validity and documentation
+of labels, held-out evaluation methodology, performance, and reproducibility.
+Suggested public datasets (optional). Teams may find the following datasets useful:
+
+ • Energy Performance of Buildings (EPC) Data: Dataset link. Contains Energy Performance Certificate
+   records for domestic properties in England and Wales, including energy ratings and property charac-
+   teristics. The associated recommendations data may help teams develop retrofit recommendations
+   and estimate potential improvements.
+ • London Smart Meter Energy Consumption: Dataset link. Contains electricity consumption readings
+   at half-hourly intervals for a sample of 5,567 London households, collected between 2011 and 2014. It
+
+                                                        4
+Megathon X: Singularity                                                     Problem Statement 2 | Lloyds
+
+
+   can be used to develop energy-use profiles and analyse consumption patterns. The dataset is large,
+   so teams may use a suitable subset.
+ • National Energy Efficiency Data-Framework (NEED): Dataset link. Provides household electricity and
+   gas consumption statistics across different property and household characteristics. It can help teams
+   establish consumption benchmarks and estimate typical energy use for different types of homes. The
+   published tables are aggregated and do not provide individual-property records.
+ • HM Land Registry Price Paid Data: Dataset link. Contains residential property transaction prices, sale
+   dates and property characteristics for England and Wales. It can support property-price analysis and
+   the development of indicative property-value models.
+
+These datasets cover only parts of the problem and may not be directly joinable at the property level.
+Teams may combine public datasets with synthetic data to meet the requirements. They must document
+their data sources, licensing conditions, assumptions and limitations, and must not present historical
+associations as proof of the causal effect of retrofits on property value.
+
+
+10 Optional Extension: Customer Memory
+Teams may give each customer a persistent memory, such as completed retrofits, stated constraints
+or preferences, and past recommendations with the customer’s responses, and use it to adapt later
+recommendations. The design is open. Scores and estimates must still come from the models and
+calculations above. Teams that attempt this should show how recommendations change as memory
+builds up.
+
+
+11 Evaluation
+Teams must evaluate their solutions using documented train, validation and test splits where applicable.
+They must report their evaluation methodology, relevant metrics, baseline comparisons and limitations.
+The quality of the data, label-generation process, validation methodology and reproducibility will be
+considered alongside reported results.
+Since teams may use different datasets and label-generation methods, numerical metrics from different
+submissions are not directly comparable and will not be used as a standalone ranking criterion.
+
+
+
+
+                                                   5
+Megathon X: Singularity                                                         Problem Statement 2 | Lloyds
+
+
+
+Area                                  Evaluation criteria
+
+Data quality                          Plausibility of the data, documented sources and assumptions,
+                                      label-generation methodology, treatment of missing data, and prevention
+                                      of data leakage.
+Green Home Score                      Correct use of the fixed weights, documented and monotonic sub-score
+                                      mappings, reproducibility, and explanation of component contributions.
+ML and recommendations                Appropriateness of the approach, validation methodology, comparison
+                                      with a simple baseline, quality and ranking of recommendations, and
+                                      feasibility of proposed retrofits.
+Energy savings and carbon reduction   Consistency and reproducibility of per-fuel calculations, treatment of
+                                      interactions between retrofits, appropriate use of documented emissions
+                                      factors, and comparison with held-out reference estimates where
+                                      available.
+Property-value impact                 Transparency of the estimation method and assumptions, evaluation of
+                                      the submitted range against held-out reference estimates where available,
+                                      and appropriate treatment of confounding factors and causal limitations.
+LLM explanations                      Groundedness, factual accuracy, completeness, consistency with model
+                                      outputs, and appropriate handling of missing or conflicting information
+                                      and infeasible retrofits.
+System performance                    Responsiveness, reliability, reproducibility, and reasonable
+                                      computational and LLM costs.
+
+
+Scenario-based evaluation. During evaluation, organisers may test submissions using scenarios involving
+missing or conflicting property data, infeasible or interacting retrofits, increased electricity use after a
+heating-system change, and insufficient information to estimate savings or property-value impact.
+LLM explanation evaluation. Organisers may evaluate explanations and what-if responses using held-out
+scenarios, including missing data, conflicting signals and infeasible retrofits. Exact evaluation scenar-
+ios need not be disclosed in advance. Targets are groundedness ≥90%, factual accuracy ≥90%, and
+unsupported claims <5%.
+
+
+
+
+                                                      6
+Megathon X: Singularity                                                         Problem Statement 2 | Lloyds
+
+
+Baseline and reproducibility. Teams must compare their approach with an appropriate simple baseline
+on their own validation data and explain the results. The organisers may rerun submitted code and inspect
+the data, labels, calculations and outputs. Reported results that cannot be reproduced may affect the
+evaluation. Because datasets may differ across teams, judges will consider the data and label-generation
+methodology alongside reported metrics rather than treating raw metrics as directly comparable across
+all teams.
+
+
+12 Scoring
+Submissions will be evaluated across the following criteria. Teams should demonstrate their approach
+and provide evidence from their implementation and evaluation; the sophistication of a model alone
+does not determine its quality.
+
+Criterion                                                                                     Weight
+
+Business relevance and usefulness of the recommendations                                        10%
+Green Home Score and sustainability insight quality                                             15%
+ML and recommendation quality (data quality, validation methodology and held-out metrics)       20%
+Energy savings, carbon reduction and property-value estimation                                  15%
+GenAI and LLM implementation (grounded explanations and what-if evaluation)                     15%
+Technical architecture (including data engineering, reproducibility and system performance)     10%
+Explainability and Responsible AI                                                                5%
+UX and dashboard                                                                                 5%
+Innovation (including the optional extension)                                                    5%
+
+Total                                                                                          100%
+
+
+Evaluation will consider the quality and documentation of the team’s data and labels, the validity of its
+held-out evaluation, and whether its outputs are reproducible. Since teams may use different datasets
+and label-generation methods, raw metrics will not be treated as directly comparable without considering
+these differences. Unsupported precision, arbitrary synthetic labels, or claims that exceed what the data
+can establish may reduce the score.
+
+
+13 Submission
+A. Working prototype (web app or dashboard)
+B. Source code and data preparation/generation scripts, with run instructions; include dataset files
+   where sharing is permitted
+C. Trained models and inference code
+D. Scoring method: documented sub-score mappings
+E. LLM implementation: prompts, model or API details, evaluation approach
+ F. Architecture diagram
+G. Evaluation report: the metrics in Section 11, on the validation set
+H. Responsible AI note: privacy, bias, explainability, hallucination, human oversight, data limitations
+ I. Held-out test predictions and the associated data schema/label documentation
+
+
+
+
+                                                      7
+

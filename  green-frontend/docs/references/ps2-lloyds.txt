@@ -1,0 +1,330 @@
+M E G AT H O N X : S I N G U L A R I T Y · P R O B L E M S TAT E M E N T 2
+
+
+
+
+Green Home Score and
+Retrofit
+Recommendation
+Engine
+How green is my home today, what should I improve, how much
+could I save, and could it add value?
+
+
+  Lloyds     Hackathon briefing for participants
+01 · THE CHALLENGE
+
+
+What you are building
+Build an AI system that analyses                    1       Calculate a Green Home Score
+property characteristics, energy
+                                                    2       Identify homes with poor energy efficiency
+consumption and existing home
+features to:                                                Recommend suitable improvements: insulation, heat pumps, solar panels,
+                                                    3
+                                                            double glazing, smart energy controls
+
+                                                    4       Estimate potential energy savings and carbon reduction
+
+                                                    5       Estimate the potential increase in property value
+
+
+
+  How green is my home                  What should I improve?                  How much energy and         Could this increase my
+  today?                                                                        carbon could I save?        property’s value?
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                        02
+02 · THE CORE RULE
+
+
+Models calculate. The LLM explains.
+
+
+   Models and calculations                            The LLM                             What-if requests
+                                                      Only explains outputs and answers   First rerun the relevant models and
+   The score, savings, carbon and                     what-if questions. It must not      calculations for the proposed
+   value figures all come from                        calculate the score or invent       scenario. Then the LLM explains
+   documented models and                              estimates.                          their outputs.
+   calculations.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                   03
+03 · GREEN HOME SCORE
+
+
+A 0–100 score from seven weighted components
+                                                             Energy efficiency                       25%
+   S = Σ w_k × s_k
+                                                             Energy consumption intensity (kWh per
+                                                                                                     20%
+   s_k: component sub-score, 0 to 100                        m²)
+   w_k: fixed weight as a fraction, Σ w_k = 1
+                                                             Insulation                              15%
+
+                                                             Heating system                          15%
+Score                   Classification
+
+80–100                  Highly efficient                     Windows and glazing                     10%
+
+65–79                   Good                                 Renewable energy                        10%
+
+50–64                   Moderate                             Smart energy management                  5%
+30–49                   Poor                                 Total                                   100%
+0–29                    Very poor
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                          04
+04 · RANKING BY IMPROVEMENT POTENTIAL
+
+
+How much purchased energy could feasible retrofits
+remove?
+    Improvement potential = 100 × (E_baseline − E_after) / E_baseline
+
+
+  What it measures                       Purchased energy                       Missing baseline                    Per fuel
+  Estimated % reduction in annual        Grid electricity imported + gas        If baseline energy is zero or       Report electricity and gas
+  purchased energy achievable            consumed, in kWh/year. Both            unavailable, report the metric as   changes separately: a retrofit
+  with the retrofits feasible for that   totals use the same accounting         unavailable and document the        may cut one and raise the other.
+  property.                              convention.                            handling.                           Solar reduces grid imports, not
+                                                                                                                    underlying demand.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                                         05
+0 5 · R E T R O F I T R E C O M M E N D AT I O N S
+
+
+A prioritized list of what is feasible
+
+
+
+   1                                                  2                                  3
+   Feasible, not exhaustive                           Every item explains itself         Order reflects interactions
+   Return the retrofits that are feasible             Each item gives its suitability,   Sequence retrofits by how they
+   for this property, not every retrofit              estimated saving and reason.       interact, for example:
+   available.                                           High     Medium         Low       Insulation        Heat pump
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                             06
+0 6 · E N E R G Y S AV I N G S
+
+
+Per retrofit, per package, per fuel
+  ∙ Estimate the saving for each recommended retrofit and for the
+                                                                                ILLUSTRATIVE AGGREGATE EXAMPLE
+   package as a whole.
+                                                                                Baseline electricity                     4,800 kWh/yr
+  ∙ In kWh/year, separately for electricity and gas.
+                                                                                + Baseline gas
+  ∙ Use a consistent baseline and estimate post-retrofit consumption                                                   12,000 kWh/yr
+
+   for each fuel.                                                               = Purchased energy                     16,800 kWh/yr
+  ∙ Show an increase in consumption as a negative saving.                       × 15% reduction                          2,520 kWh/yr
+  ∙ For a package, account for interactions rather than simply adding
+                                                                                This aggregate does not determine the electricity and gas
+   individual estimates.                                                        savings: your model must estimate each fuel separately. A full
+  ∙ Label all savings as estimates, not guarantees.                             package might, for example, net 5,500 kWh/year after
+                                                                                interactions.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                                    07
+07 · CARBON REDUCTION
+
+
+Carbon is calculated fuel by fuel
+   ΔC = Σ ΔE_f × EF_f, f ∈ {elec, gas}
+   = ΔE_elec × EF_elec + ΔE_gas × EF_gas
+
+
+
+  ΔE_f                                               EF_f                                          Signs
+  Change in consumption of fuel f:                   Emissions factor for fuel f, in kg CO₂e per   Positive ΔE_f is a saving; negative is an
+  E_f,baseline − E_f,after, in kWh/year.             kWh, from a reliable, documented source       increase. Positive ΔC is an emissions
+                                                     with units.                                   reduction.
+
+
+
+        Why per fuel? A heat pump may lower gas use while raising electricity use.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                                  08
+0 8 · P R O P E R T Y VA L U E I M PA C T
+
+
+Give a range, never a single number
+  Current value                        Energy rating                      Indicative uplift                    Potential value
+
+  £350,000                             E to C                             2–5%                                 £357,000 to £367,500
+
+
+
+
+  ∙ Describe it as an estimated potential property-value impact, based          ∙ Account for location, size, property type and market conditions.
+   on historical and market relationships in your dataset.                      ∙ If your data and method can’t establish a causal retrofit effect, call it
+  ∙ Compare a consistent baseline with the post-retrofit scenario, e.g.           an indicative estimate, not a guaranteed or proven causal
+   predicted values for the same property before and after, other                 increase.
+   characteristics held constant.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                                          09
+0 9 · P I P E L I N E A N D W H AT- I F F L O W
+
+
+From raw data to the customer dashboard
+  1
+                                            2                                   3                              4
+  Property, energy and sales
+                                            Feature engineering                 Green Home Score               Efficiency detector
+  data
+
+
+                                            6
+  5                                                                             7                              8
+                                            Savings, carbon and value
+  Retrofit engine                                                               LLM explanation                Customer dashboard
+                                            models
+
+
+
+   WHAT-IF FLOW · THE LLM MUST NOT INVENT SCENARIO OUTPUTS
+
+      Request updates the proposed retrofit             Rerun the savings, carbon and value
+                                                                                                   LLM explains the computed results
+      scenario                                          calculations
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                          10
+1 0 · D ATA S E T
+
+
+You prepare the data your solution needs
+
+
+   Where it can come from                             What you must document                    Room to adapt
+     ∙ Synthetic property, energy, retrofit             ∙ Data sources and schema                ∙ Construct plausible reference
+       and sales data                                   ∙ Assumptions and limitations             labels for improvement-potential
+     ∙ Suitable public datasets that may                ∙ Synthetic-data generation and label     ranking, retrofit feasibility, per-fuel
+       lawfully be used                                   rules; emissions factors with units     savings and property-value impact.
+     ∙ A combination of both                              and sources                             Your data must support every
+                                                                                                  required output.
+     No real personal or confidential
+     customer data. Use public data in line
+     with its licence and restrictions.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                               11
+11 · O P T I O N A L E X T E N S I O N
+
+
+Customer memory
+Give each customer a persistent memory and use it to adapt
+                                                                                GUARDRAIL
+later recommendations. The design is open. It could hold:
+                                                                                Scores and estimates must still come from the
+  Completed retrofits                                                           models and calculations.
+
+  Stated constraints or preferences                                             IF YOU ATTEMPT IT
+
+                                                                                Show how recommendations change as
+  Past recommendations and the customer’s responses
+                                                                                memory builds up.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                   12
+1 2 · E VA L U AT I O N
+
+
+How your solution will be tested
+   Your methodology                                     Scenario tests to expect                             Baseline and reproducibility
+     ∙ Documented train, validation and test              ∙ Missing or conflicting property data               ∙ Compare with an appropriate simple
+       splits, where applicable                           ∙ Infeasible or interacting retrofits                 baseline on your own validation data,
+     ∙ Report methodology, metrics, baseline              ∙ Higher electricity use after a                      and explain the results
+       comparisons and limitations                         heating-system change                               ∙ Organisers may rerun your code and
+     ∙ Data quality, label generation, validation         ∙ Too little information to estimate savings          inspect data, labels, calculations and
+       and reproducibility count alongside                 or value impact                                      outputs
+       results                                                                                                 ∙ Results that can’t be reproduced may
+                                                                                                                affect your evaluation
+
+
+        Raw metrics are not a standalone ranking criterion. LLM targets: ≥90% groundedness, ≥90% factual accuracy, and <5% unsupported claims.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                                            13
+13 · SCORING
+
+
+Score Distribution
+ML and recommendation quality (data quality, validation methodology and held-out metrics)     20%
+
+Green Home Score and sustainability insight quality                                           15%
+
+Energy savings, carbon reduction and property-value estimation                                15%
+
+GenAI and LLM implementation (grounded explanations and what-if evaluation)                   15%
+
+Business relevance and usefulness of the recommendations                                      10%
+
+Technical architecture (including data engineering, reproducibility and system performance)   10%
+
+Explainability and Responsible AI                                                             5%
+
+UX and dashboard                                                                              5%
+
+Innovation (including the optional extension)                                                 5%
+
+Unsupported precision, arbitrary synthetic labels or overclaiming may reduce your score.
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                  14
+14 · SUBMISSION
+
+
+Nine things to hand in
+A      Working prototype (web app or dashboard)                                 F   Architecture diagram
+
+       Source code and data preparation/generation scripts, with run                Evaluation report: the evaluation metrics, on the validation set
+B                                                                               G
+       instructions; dataset files where sharing is permitted
+
+C      Trained models and inference code                                            Responsible AI note: privacy, bias, explainability,
+                                                                                H
+                                                                                    hallucination, human oversight, data limitations
+D      Scoring method: documented sub-score mappings
+                                                                                    Held-out test predictions, with the data schema and label
+                                                                                I
+       LLM implementation: prompts, model or API details,                           documentation
+E
+       evaluation approach
+
+
+
+
+Megathon X: Singularity · PS2 · Green Home Score and Retrofit Engine · Lloyds                                                                   15
+
