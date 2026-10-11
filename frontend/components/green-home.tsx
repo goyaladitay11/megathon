@@ -60,7 +60,7 @@ export default function GreenHome({ view }: { view: View }) {
   const [aiAnswer,setAiAnswer] = useState("");
   const [scenarioQuestion,setScenarioQuestion] = useState("");
   const reduced = useReducedMotion();
-  const useSample = true;
+  const useSample = false;
   const reportProperty = property;
   const selectedKey = selectionKey(selected);
   const scenarioCurrent = Boolean(
