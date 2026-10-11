@@ -21,6 +21,7 @@ from backend.app.services.energy_simulator import simulate_energy_impact
 from backend.app.services.carbon_service import calculate_carbon_reduction
 from backend.app.services.valuation_service import estimate_property_value_uplift
 from backend.app.services.retrofit_recommender import evaluate_retrofit_feasibility_and_suitability
+from backend.app.services.chat_intents import detect_chat_intent, build_retrofit_advice
 
 logger = logging.getLogger(__name__)
 
@@ -251,6 +252,9 @@ async def handle_what_if_interaction(
         unsupported = []
     else:
         requested_ids, unsupported = parse_what_if_query(query)
+
+    if detect_chat_intent(query) == "recommend":
+        return build_retrofit_advice(summary, requested_ids, unsupported)
 
     valid_applied_ids = []
     for r_id in requested_ids:
