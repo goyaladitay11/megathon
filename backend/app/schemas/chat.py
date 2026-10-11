@@ -5,6 +5,7 @@ Step 9: Grounded LLM Explanation Layer & Scenario Validation
 
 from typing import List, Optional, Dict, Any
 from pydantic import BaseModel, Field
+from backend.app.schemas.property import PropertyInput
 from backend.app.schemas.simulation import EnergySimulationResult
 from backend.app.schemas.carbon import CarbonSavingsResult
 from backend.app.schemas.valuation import PropertyValuationResult
@@ -12,6 +13,7 @@ from backend.app.schemas.valuation import PropertyValuationResult
 
 class ChatRequest(BaseModel):
     property_id: Optional[str] = Field("P10001", description="ID of property being evaluated")
+    property_input: Optional[PropertyInput] = Field(None, description="Full property details for personalized chat; preferred over property_id when supplied")
     query: str = Field(..., example="What if I install a heat pump and solar panels?", description="Customer natural language question or what-if scenario")
     selected_retrofit_ids: Optional[List[str]] = Field(None, description="Explicit list of retrofits if triggered via UI buttons")
 

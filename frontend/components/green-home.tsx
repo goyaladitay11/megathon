@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import InteractiveLanding from "./interactive-landing";
+import { assessProperty, runScenario, explainScenario } from "@/lib/api";
 import AssessmentReport from "./assessment-report";
 import {
   isProperty,
@@ -54,10 +55,13 @@ export default function GreenHome({ view }: { view: View }) {
   const [scenario, setScenario] = useState<Scenario | null>(null);
   const [comparisonBase, setComparisonBase] = useState<Scenario | null>(null);
   const [error, setError] = useState("");
-  const busy = false;
+  const [busy,setBusy] = useState(false);
+  const [question,setQuestion] = useState("");
+  const [aiAnswer,setAiAnswer] = useState("");
+  const [scenarioQuestion,setScenarioQuestion] = useState("");
   const reduced = useReducedMotion();
-  const useSample = true;
-  const reportProperty = sampleProperty;
+  const useSample = false;
+  const reportProperty = property;
   const selectedKey = selectionKey(selected);
   const scenarioCurrent = Boolean(
     scenario &&
@@ -96,11 +100,21 @@ export default function GreenHome({ view }: { view: View }) {
 
   useEffect(() => {
     if (!ready || (view !== "dashboard" && view !== "simulate")) return;
-    setComparisonBase(sampleCompletePackage);
-    setScenario(sampleCompletePackage);
-    setSelected(sampleCompletePackage.selectedRetrofits);
+    let cancelled = false;
+    setBusy(true);
+    setScenario(null);
     setError("");
-  }, [ready, view]);
+    assessProperty(property, profile)
+      .then(baseline => {
+        if (cancelled) return;
+        setComparisonBase(baseline);
+        setScenario(baseline);
+        setSelected([]);
+      })
+      .catch(e => { if (!cancelled) setError(String(e)); })
+      .finally(() => { if (!cancelled) setBusy(false); });
+    return () => { cancelled = true; };
+  }, [ready, view, property]);
 
   function changeSelected(ids: Upgrade[]) {
     setError("");
@@ -113,17 +127,19 @@ export default function GreenHome({ view }: { view: View }) {
     setError("");
   }
 
-  function applyScenario() {
-    const fixture = sampleScenarios.find(
-      (item) => selectionKey(item.selectedRetrofits) === selectedKey,
-    );
-    if (!fixture) {
-      setError(
-        "This frontend preview includes three fixed sample plans. Choose Starting home, Insulation + solar, or Complete package. Custom predictions become available after backend integration.",
-      );
-      return;
-    }
-    loadSample(fixture);
+  async function applyScenario() {
+    if (!comparisonBase || busy) return;
+    setBusy(true); setError("");
+    try { setScenario(await runScenario(property, selected, comparisonBase)); }
+    catch(e) { setError(String(e)); }
+    finally { setBusy(false); }
+  }
+  async function askQuestion(value: string) {
+    if (!scenario || busy || !value.trim()) return;
+    setBusy(true); setError("");
+    try { const answer = await explainScenario(property, scenario, value); setAiAnswer(answer.message); }
+    catch(e) { setError(String(e)); }
+    finally { setBusy(false); }
   }
 
   function exportResult() {
@@ -819,7 +835,7 @@ export default function GreenHome({ view }: { view: View }) {
                   </div>
                 )}
                 {!scenario ? (
-                  <p role="status">Loading the sample report…</p>
+                  <p role="status">Calculating home assessment…</p>
                 ) : (
                   <>
                     {view === "simulate" && (
@@ -831,7 +847,7 @@ export default function GreenHome({ view }: { view: View }) {
                           <span className="eyebrow">YOUR NEXT CHAPTER</span>
                           <h2>Choose the possibilities.</h2>
                           <p>
-                            Explore three fixed example plans. Upgrade controls
+                            Choose improvements. Upgrade controls
                             let you draft a selection; loading a matching sample
                             changes the report without calculating predictions.
                           </p>
@@ -919,7 +935,7 @@ export default function GreenHome({ view }: { view: View }) {
                               onClick={() => void applyScenario()}
                               disabled={busy || scenarioCurrent}
                             >
-                              Load selected sample
+                              Calculate selected plan
                               <ArrowRight size={16} />
                             </button>
                           </div>
@@ -959,7 +975,7 @@ export default function GreenHome({ view }: { view: View }) {
                       <div className="gh-conversation">
                         <form
                           className="card"
-                          onSubmit={(event) => event.preventDefault()}
+                          onSubmit={(event) => { event.preventDefault(); void askQuestion(question); }}
                         >
                           <span className="eyebrow">
                             A QUESTION ABOUT YOUR REPORT?
@@ -975,14 +991,10 @@ export default function GreenHome({ view }: { view: View }) {
                           </p>
                           <label className="field">
                             Your question
-                            <textarea
-                              disabled
-                              placeholder="Why is insulation recommended first?"
-                              maxLength={2000}
-                            />
+                            <textarea value={question} onChange={e=>setQuestion(e.target.value)} placeholder="Why is insulation recommended first?" maxLength={2000}/>
                           </label>
                           <div className="actions">
-                            <button className="button primary" disabled>
+                            <button className="button primary" disabled={busy || !question.trim()}>
                               Explain this result
                               <Sparkles size={16} />
                             </button>
@@ -995,7 +1007,7 @@ export default function GreenHome({ view }: { view: View }) {
                         </form>
                         <form
                           className="card"
-                          onSubmit={(event) => event.preventDefault()}
+                          onSubmit={(event) => { event.preventDefault(); void askQuestion(scenarioQuestion); }}
                         >
                           <span className="eyebrow">
                             WHAT IF I CHANGE THE PLAN?
@@ -1012,14 +1024,10 @@ export default function GreenHome({ view }: { view: View }) {
                           </p>
                           <label className="field">
                             What-if question
-                            <textarea
-                              disabled
-                              placeholder="What if I add solar to this package?"
-                              maxLength={2000}
-                            />
+                            <textarea value={scenarioQuestion} onChange={e=>setScenarioQuestion(e.target.value)} placeholder="What if I add solar to this package?" maxLength={2000}/>
                           </label>
                           <div className="actions">
-                            <button className="button primary" disabled>
+                            <button className="button primary" disabled={busy || !scenarioQuestion.trim()}>
                               Run a what-if
                               <ArrowRight size={16} />
                             </button>

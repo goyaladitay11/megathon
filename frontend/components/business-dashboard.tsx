@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import {
   ArrowDownUp,
   ArrowUpRight,
@@ -11,7 +11,7 @@ import {
   Search,
   Sparkles,
 } from "lucide-react";
-import { samplePortfolio } from "../lib/sample-data";
+import { loadPortfolio } from "../lib/api";
 import {
   money,
   number,
@@ -108,11 +108,11 @@ function exportRows(rows: Row[]) {
     return `"${content.replaceAll('"', '""')}"`;
   };
   const provenance =
-    "Static demonstration portfolio; illustrative figures and sample text, not ML or LLM output";
+    "Backend-calculated property portfolio; modelled estimates, not guaranteed outcomes";
   const values = rows.map(
     ({ property, baseline, package: scenario, selected }) => [
       provenance,
-      "sample",
+      "live",
       property.id,
       property.name,
       property.region,
@@ -158,7 +158,7 @@ function exportRows(rows: Row[]) {
           })
         : scenario.explanation,
       scenario.draft?.why.length ? JSON.stringify(scenario.draft.why) : null,
-      "Static sample explanation; not an AI response",
+      "Backend explanation; may use deterministic fallback",
       scenario.narrativeUnavailableReason,
       (baseline.keyIssues || scenario.keyIssues || []).join("; "),
       Array.from(
@@ -177,13 +177,19 @@ function exportRows(rows: Row[]) {
   );
   const link = document.createElement("a");
   link.href = url;
-  link.download = "green-home-sample-portfolio.csv";
+  link.download = "green-home-property-portfolio.csv";
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 export default function BusinessDashboard() {
-  const portfolio = samplePortfolio;
+  const [portfolio, setPortfolio] = useState<Row[]>([]);
+  const [loadingError, setLoadingError] = useState("");
+  useEffect(() => {
+    let live = true;
+    loadPortfolio().then(v => { if(live) setPortfolio(v.rows); }).catch(e => { if(live) setLoadingError(String(e)); });
+    return () => { live = false; };
+  }, []);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState<Sort>("potential");
@@ -303,7 +309,7 @@ export default function BusinessDashboard() {
           </div>
           <span className="b-heading-tag">
             <span className="b-dot" />
-            Sample portfolio
+            Backend property portfolio
           </span>
         </div>
         <p className="b-disclosure">
