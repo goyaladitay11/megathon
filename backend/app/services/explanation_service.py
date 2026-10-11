@@ -79,8 +79,8 @@ def build_deterministic_grounded_explanation(
     # 1. Executive Summary
     if not applied_retrofit_ids:
         summary_text = (
-            f"Your home currently achieves a Green Home Score of {score_result.overall_score}/100 "
-            f"({score_result.classification.value}). Baseline annual energy consumption is "
+            f"Your home currently achieves a Green Home Score of {score_result.final_score}/100 "
+            f"({score_result.classification}). Baseline annual energy consumption is "
             f"{energy_sim.baseline_purchased_kwh:,.0f} kWh/year ({energy_sim.baseline_electricity_kwh:,.0f} kWh electricity, "
             f"{energy_sim.baseline_gas_kwh:,.0f} kWh gas), with an energy intensity of {summary.energy_intensity_kwh_m2:.1f} kWh/m²."
         )
@@ -194,7 +194,7 @@ PRE-COMPUTED DATA:
 - Property ID: {summary.property_id}
 - Property Type: {summary.property_type}, Built: {summary.age}, Area: {summary.floor_area_m2} m2, Region: {summary.region}
 - Current EPC: {summary.energy_rating}, Heating: {summary.heating}, Insulation: {summary.insulation}, Glazing: {summary.glazing}
-- Green Home Score: {score_result.overall_score}/100 ({score_result.classification.value})
+- Green Home Score: {score_result.final_score}/100 ({score_result.classification})
 - Baseline Electricity: {energy_sim.baseline_electricity_kwh} kWh/yr, Baseline Gas: {energy_sim.baseline_gas_kwh} kWh/yr
 - Applied Retrofits: {applied_retrofit_ids}
 - Post-Retrofit Electricity: {energy_sim.after_electricity_kwh} kWh/yr, Post-Retrofit Gas: {energy_sim.after_gas_kwh} kWh/yr
