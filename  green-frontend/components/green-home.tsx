@@ -804,12 +804,6 @@ export default function GreenHome({ view }: { view: View }) {
                       {sampleProperty.type} with recorded EPC{" "}
                       {sampleProperty.epcRating}.
                     </p>
-                    <small>
-                      Fixed illustrative results help you explore the interface.
-                      Your entered details remain saved in this browser.
-                      Personal predictions and LLM explanations will be
-                      available after backend integration.
-                    </small>
                   </aside>
                 )}
 
