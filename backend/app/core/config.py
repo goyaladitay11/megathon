@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
     API_PORT: int = 8000
     API_HOST: str = "0.0.0.0"
-    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173"
+    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173,http://localhost:3010,http://127.0.0.1:3010,http://localhost:3020,http://127.0.0.1:3020"
 
     # Optional Supabase PostgreSQL credentials
     SUPABASE_URL: str = ""

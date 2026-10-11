@@ -840,7 +840,14 @@ export default function GreenHome({ view }: { view: View }) {
                   </div>
                 )}
                 {!scenario ? (
-                  <p role="status">Calculating home assessment…</p>
+                  error ? (
+                    <div className="error" role="alert">
+                      <strong>Assessment could not load.</strong>
+                      <p>Check that FastAPI is running and the frontend API URL is correct.</p>
+                    </div>
+                  ) : (
+                    <p role="status">Calculating home assessment…</p>
+                  )
                 ) : (
                   <>
                     {view === "simulate" && (
