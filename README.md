@@ -75,6 +75,19 @@ The training pipeline compared **Median Dummy baseline**, **Ridge Regression**, 
 
 Full metrics and validation methodology: [backend/reports/evaluation.md](backend/reports/evaluation.md).
 
+## Quick links — current local demo
+
+When the Green Home Twin development servers are running on the demo ports:
+
+| Service | Local link |
+| --- | --- |
+| Green Home Twin frontend | [Open frontend](http://localhost:3021) |
+| FastAPI backend | [Open API](http://127.0.0.1:8767) |
+| Interactive API documentation | [Open Swagger UI](http://127.0.0.1:8767/docs) |
+| OpenAPI specification | [View JSON schema](http://127.0.0.1:8767/openapi.json) |
+
+> These links are accessible only on the computer running the servers. The commands below document the repository's default ports (frontend 3000, backend 8000); if you use those defaults instead, adjust the links accordingly. Confirm which ports your current start script uses.
+
 ## Run the project locally
 
 ### Backend — FastAPI
