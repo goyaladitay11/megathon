@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import {
   ArrowDownUp,
   ArrowUpRight,
@@ -11,7 +11,7 @@ import {
   Search,
   Sparkles,
 } from "lucide-react";
-import { samplePortfolio } from "../lib/sample-data";
+import { loadPortfolio } from "../lib/api";
 import {
   money,
   number,
@@ -183,7 +183,13 @@ function exportRows(rows: Row[]) {
 }
 
 export default function BusinessDashboard() {
-  const portfolio = samplePortfolio;
+  const [portfolio, setPortfolio] = useState<Row[]>([]);
+  const [loadingError, setLoadingError] = useState("");
+  useEffect(() => {
+    let live = true;
+    loadPortfolio().then(v => { if(live) setPortfolio(v.rows); }).catch(e => { if(live) setLoadingError(String(e)); });
+    return () => { live = false; };
+  }, []);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
   const [sort, setSort] = useState<Sort>("potential");
