@@ -925,7 +925,7 @@ export default function GreenHome({ view }: { view: View }) {
                         <div className="gh-plan-actions">
                           <span>
                             {scenarioCurrent
-                              ? "Your controls match the confirmed package."
+                              ? "Your controls match the calculated package."
                               : "Draft package · changes have not been applied."}
                           </span>
                           <div className="actions">
@@ -1038,7 +1038,7 @@ export default function GreenHome({ view }: { view: View }) {
                             </button>
                           </div>
                           <small>
-                            This frontend provides three sample plans above.
+                            Use the plan options or choose individual upgrades above.
                             Custom scenarios and new explanations need a backend
                             connection.
                           </small>
