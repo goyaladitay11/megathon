@@ -71,7 +71,7 @@ def request(url: str, payload=None, origin=None, preflight=False):
         method="OPTIONS" if preflight else ("POST" if payload is not None else "GET"),
     )
     with urlopen(req, timeout=6) as response:
-        return response.status, dict(response.headers), response.read()
+        return response.status, {key.lower(): value for key, value in response.headers.items()}, response.read()
 
 
 def wait_ready(url: str, process: subprocess.Popen, description: str, timeout: int = 45):
