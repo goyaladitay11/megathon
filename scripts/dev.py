@@ -113,7 +113,7 @@ def main() -> int:
         print(f"Starting FastAPI on {api_url}", flush=True)
         api = subprocess.Popen(
             [str(python), "-m", "uvicorn", "main:app", "--host", "127.0.0.1", "--port", str(api_port)],
-            cwd=BACKEND, env=api_env,
+            cwd=BACKEND, env=api_env, start_new_session=True,
         )
         processes.append(api)
         wait_ready(api_url + "/health", api, "FastAPI")
@@ -138,7 +138,7 @@ def main() -> int:
         print(f"Starting Next.js on {web_url}", flush=True)
         web = subprocess.Popen(
             ["npm", "run", "dev", "--", "--hostname", "127.0.0.1", "--port", str(web_port)],
-            cwd=FRONTEND, env=web_env,
+            cwd=FRONTEND, env=web_env, start_new_session=True,
         )
         processes.append(web)
         wait_ready(web_url, web, "Next.js", timeout=90)
@@ -159,12 +159,13 @@ def main() -> int:
     finally:
         for process in reversed(processes):
             if process.poll() is None:
-                process.terminate()
+                # Terminate the whole child process group, including Next's worker.
+                os.killpg(process.pid, signal.SIGTERM)
         for process in reversed(processes):
             try:
                 process.wait(timeout=5)
             except subprocess.TimeoutExpired:
-                process.kill()
+                os.killpg(process.pid, signal.SIGKILL)
                 process.wait()
 
 
