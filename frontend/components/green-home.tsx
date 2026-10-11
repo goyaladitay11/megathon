@@ -49,6 +49,7 @@ export default function GreenHome({ view }: { view: View }) {
     goal: "sell",
   });
   const [ready, setReady] = useState(false);
+  const [retryAssessment, setRetryAssessment] = useState(0);
   const [step, setStep] = useState(0);
   const [featuresConfirmed, setFeaturesConfirmed] = useState(false);
   const [selected, setSelected] = useState<Upgrade[]>([]);
@@ -100,21 +101,26 @@ export default function GreenHome({ view }: { view: View }) {
 
   useEffect(() => {
     if (!ready || (view !== "dashboard" && view !== "simulate")) return;
-    let cancelled = false;
+    const controller = new AbortController();
     setBusy(true);
     setScenario(null);
+    setComparisonBase(null);
     setError("");
-    assessProperty(property, profile)
+    assessProperty(property, profile, controller.signal)
       .then(baseline => {
-        if (cancelled) return;
+        if (controller.signal.aborted) return;
         setComparisonBase(baseline);
         setScenario(baseline);
         setSelected([]);
       })
-      .catch(e => { if (!cancelled) setError(String(e)); })
-      .finally(() => { if (!cancelled) setBusy(false); });
-    return () => { cancelled = true; };
-  }, [ready, view, property]);
+      .catch(e => {
+        if (!controller.signal.aborted) setError(String(e));
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setBusy(false);
+      });
+    return () => controller.abort();
+  }, [ready, view, property, retryAssessment]);
 
   function changeSelected(ids: Upgrade[]) {
     setError("");
@@ -834,7 +840,7 @@ export default function GreenHome({ view }: { view: View }) {
                   </aside>
                 )}
 
-                {error && (
+                {error && scenario && (
                   <div className="error" role="alert">
                     {error}
                   </div>
@@ -843,7 +849,8 @@ export default function GreenHome({ view }: { view: View }) {
                   error ? (
                     <div className="error" role="alert">
                       <strong>Assessment could not load.</strong>
-                      <p>Check that FastAPI is running and the frontend API URL is correct.</p>
+                      <p>{error}</p>
+                      <button className="button" type="button" onClick={() => setRetryAssessment(n => n + 1)}>Try assessment again</button>
                     </div>
                   ) : (
                     <p role="status">Calculating home assessment…</p>
